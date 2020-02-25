@@ -1,2 +1,2 @@
 # A
-Pràctica d'Algorismia
+Pràctica d'Algorísmia
