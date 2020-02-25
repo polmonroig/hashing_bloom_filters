@@ -1,0 +1,2 @@
+# A
+Pràctica d'Algorismia
