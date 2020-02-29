@@ -6,6 +6,9 @@
 #define A_MULTIWORD_HASH_H
 
 
+#include <vector>
+#include <string>
+
 #include "hash_functions/hash_function.h"
 
 class MultiWordHash {
@@ -14,6 +17,10 @@ class MultiWordHash {
 public:
 
     explicit MultiWordHash(HashFunction const& hash_function);
+
+    unsigned int operator()(std::string const& words) const;
+
+    unsigned int operator()(std::vector<int> const& words) const;
 
 private:
 

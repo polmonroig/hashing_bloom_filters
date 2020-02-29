@@ -12,6 +12,7 @@ class HashFunction {
 
 public:
 
+
     /**
      * @brief call the hash function operator
      * @pre depends on the subclass
