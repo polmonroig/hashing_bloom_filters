@@ -20,7 +20,7 @@ public:
 
     /**
      * @brief hash division function
-     *        referencing D.E. Knuth [The art of computer programming, volume 3, 515-516]
+     *        referencing D.E. Knuth [515-516]
      * @pre tableSize > 0
      * @post true
      * @param value is the key to be hashed

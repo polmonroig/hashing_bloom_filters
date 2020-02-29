@@ -14,7 +14,7 @@ class MultiplicativeHashing : public HashFunction{
 
     /**
      * @brief hash multiplicative function
-     *        referencing D.E. Knuth [The art of computer programming, volume 3, 516]
+     *        referencing D.E. Knuth [516]
      * @pre true
      * @post true
      * @param value is the key to be hashed
