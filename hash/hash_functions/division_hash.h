@@ -10,6 +10,28 @@
 
 class DivisionHash : public HashFunction{
 
+
+public:
+
+    /**
+     * @brief basic constructor, define the name
+     * */
+    DivisionHash();
+
+    /**
+     * @brief hash division function
+     *        referencing D.E. Knuth [The art of computer programming, volume 3, 515, 516]
+     * @pre tableSize > 0
+     * @post true
+     * @param value is the key to be hashed
+     * @param tableSize is the size of the hash table
+     * @returns the hashed value of the key
+     * */
+    virtual unsigned int operator()(int key, unsigned int tableSize) const override ;
+
+private:
+
+
 };
 
 
