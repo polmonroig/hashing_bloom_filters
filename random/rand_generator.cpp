@@ -1,7 +1,3 @@
-//
-// Created by pol on 3/1/20.
-//
-
 #include "rand_generator.h"
 
 
