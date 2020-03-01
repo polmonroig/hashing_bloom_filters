@@ -9,6 +9,12 @@
 #include <vector>
 
 /**
+  * @typedef type definition for a really big unsigned int
+  * */
+typedef long long unsigned int BigInt;
+
+
+/**
  * @class Random number generator that
  *        generates a sequence of random numbers
  *        based on a specific seed. The numbers generated
@@ -20,10 +26,6 @@ class RandGenerator {
 
 public:
 
-    /**
-     * @typedef type definition for a really big unsigned int
-     * */
-    typedef long long unsigned int BigInt;
 
     /**
      * @brief generate a random number based on a seed
