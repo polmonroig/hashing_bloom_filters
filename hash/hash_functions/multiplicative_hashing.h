@@ -5,6 +5,14 @@
 
 #include "hash_function.h"
 
+
+/**
+ * @class hash multiplicative function
+     *        referencing
+     *        D.E. Knuth
+     *        The art of computer programming
+     *        volume 3[516]
+ * */
 class MultiplicativeHashing : public HashFunction{
 
     /**
@@ -13,8 +21,7 @@ class MultiplicativeHashing : public HashFunction{
     MultiplicativeHashing();
 
     /**
-     * @brief hash multiplicative function
-     *        referencing D.E. Knuth [516]
+     * @brief hash function operator
      * @pre true
      * @post true
      * @param value is the key to be hashed

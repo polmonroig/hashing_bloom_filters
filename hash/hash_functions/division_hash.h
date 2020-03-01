@@ -7,7 +7,13 @@
 
 #include "hash_function.h"
 
-
+/**
+ * @class hash division function
+     *        referencing
+     *        D.E. Knuth
+     *        The art of computer programming
+     *        volume 3[515-516]
+ * */
 class DivisionHash : public HashFunction{
 
 
@@ -19,8 +25,7 @@ public:
     DivisionHash();
 
     /**
-     * @brief hash division function
-     *        referencing D.E. Knuth [515-516]
+     * @brief hash division operator
      * @pre tableSize > 0
      * @post true
      * @param value is the key to be hashed
