@@ -16,7 +16,7 @@ void DataManager::setSize(unsigned int size) {
 }
 
 
-void DataManager::generateIntegerData(std::string const& fileName, int nFiles){
+void DataManager::generateIntegerData(std::string const& fileName, float appearance){
     std::ofstream file;
     file.open(fileName + "_dict", std::ios::out);
 
@@ -25,16 +25,17 @@ void DataManager::generateIntegerData(std::string const& fileName, int nFiles){
     writeData(file, data);
     file.close();
 
-    // write text files
-    for(int i = 0; i < nFiles; ++i){
-        file.open(fileName + "_text_" + std::to_string(i), std::ios::out);
-        writeData(file, data);
-        randomSeed = RandGenerator::generate(randomSeed);
-        auto unknownData = RandGenerator::generatePermutations(randomSeed, sequenceSize * 2);
-        writeData(file, unknownData);
+    // write text file
+    file.open(fileName + "_text" , std::ios::out);
+    data = RandGenerator::generatePermutations(randomSeed, int(float(sequenceSize) * appearance));
+    writeData(file, data);
+    randomSeed = RandGenerator::generate(randomSeed);
+    data = RandGenerator::generatePermutations(randomSeed, sequenceSize * 2);
+    writeData(file, data);
 
-        file.close();
-    }
+    file.close();
+
+
 
 }
 

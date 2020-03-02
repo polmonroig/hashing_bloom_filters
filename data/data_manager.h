@@ -15,7 +15,7 @@ public:
 
     void setSize(unsigned int size);
 
-    void generateIntegerData(std::string const& fileName, int nFiles) ;
+    void generateIntegerData(std::string const& fileName, float appearance) ;
 
 private:
 
