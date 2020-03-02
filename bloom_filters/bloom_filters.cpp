@@ -16,7 +16,7 @@ BloomFilters::BloomFilters(int tableSize, int nHashFunctions, HashFunction const
 bool BloomFilters::find(int value) const {
 
     for(unsigned int i = 0; i < k; ++i){
-        if(!filters[h1(value, m) + i * h2(value, m)])
+        if(!filters[hash(value, i)])
             return false;
     }
     return true;
@@ -24,6 +24,14 @@ bool BloomFilters::find(int value) const {
 
 void BloomFilters::insert(int value) {
     for(unsigned int i = 0; i < k; ++i){
-        filters[h1(value, m) + i * h2(value, m)] = true;
+        filters[hash(value, i)] = true;
     }
+}
+
+/** =================================
+ *               PRIVATE
+ *  =================================*/
+
+unsigned int BloomFilters::hash(int value, unsigned int i) const {
+    return h1(value, m) + i * h2(value, m);
 }
