@@ -33,5 +33,5 @@ void BloomFilters::insert(int value) {
  *  =================================*/
 
 unsigned int BloomFilters::hash(int value, unsigned int i) const {
-    return h1(value, m) + i * h2(value, m);
+    return (h1(value, m) + i * h2(value, m)) % m;
 }

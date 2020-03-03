@@ -38,7 +38,7 @@ public:
 private:
 
     /**
-     * @brief is the current dictionary 
+     * @brief is the current dictionary
      * */
     Dictionary dictionary;
 

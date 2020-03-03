@@ -15,6 +15,7 @@
  * */
 class MultiplicativeHashing : public HashFunction{
 
+public:
     /**
     * @brief basic constructor, define the name
     * */
@@ -28,24 +29,24 @@ class MultiplicativeHashing : public HashFunction{
      * @param tableSize is the size of the hash table
      * @returns the hashed value of the key
      * */
-    virtual unsigned int operator()(int key, unsigned int tableSize) const override ;
+    unsigned int operator()(int key, unsigned int tableSize) const final ;
 
 private:
 
     /**
      * @brief the word size of the computer
      * */
-    int wordSize;
+    const long wordSize = 4294967296;
 
     /**
      * @brief constant relative prime to wordSize
      * */
-    int A;
+    const long A = 2654435761;
 
     /**
      * @brief the fraction of A div wordSize
      * */
-    int fractionADivWord;
+    const long fractionADivWord = A / wordSize;
 
 };
 
