@@ -21,7 +21,7 @@ int main(){
 
     DataManager data{};
     data.setSeed(seed);
-    data.setSize(size);
+    data.setSize(n);
     std::string path = "/home/pol/Documents/fib/A/data/integer/";
     std::string file_name = path + "integer_" + std::to_string(seed);
     data.generateIntegerData(file_name, keyPercentage);
