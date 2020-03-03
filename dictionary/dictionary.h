@@ -24,6 +24,10 @@ public:
      * */
     virtual bool find(int value) const;
 
+
+protected:
+    int m;
+
 };
 
 
