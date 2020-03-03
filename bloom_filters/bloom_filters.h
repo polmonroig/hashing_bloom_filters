@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include "../dictionary/dictionary.h"
 #include "../hash/hash_functions/hash_function.h"
 
 
@@ -11,7 +12,7 @@
  *        B. Bloom. “Space/Time Tradeoffs in Hash Coding with Allowable Errors.”
  *        Communications of the ACM 13:7 (1970), 422—426.
  * */
-class BloomFilters {
+class BloomFilters : public Dictionary{
 
 public:
 
@@ -28,7 +29,7 @@ public:
      * @brief Function that inserts a value into the bloom filter
      * @param value is the key to insert
      * */
-    void insert(int value);
+    void insert(int value) final;
 
     /**
      * @brief Function that finds if an item is in the dictionary
@@ -36,7 +37,7 @@ public:
      * @param value to search
      * @returns if found
      * */
-    bool find(int value) const;
+    bool find(int value) const final;
 
 private:
 
@@ -59,7 +60,7 @@ private:
     HashFunction h1, h2;
 
     /**
-     * @brief filters that save the occurrence of a key 
+     * @brief filters that save the occurrence of a key
      * */
     std::vector<bool> filters;
 
