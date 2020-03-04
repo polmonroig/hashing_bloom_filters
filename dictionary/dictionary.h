@@ -27,7 +27,9 @@ public:
 
 protected:
 
-
+    /**
+     * @brief m is the size of the table
+     * */
     int m;
 
 };

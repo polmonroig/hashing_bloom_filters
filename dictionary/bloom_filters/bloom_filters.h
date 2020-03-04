@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "../dictionary/dictionary.h"
-#include "../hash/hash_functions/hash_function.h"
+#include "../dictionary.h"
+#include "../../hash/hash_functions/hash_function.h"
 
 
 /**
@@ -50,7 +50,7 @@ private:
     unsigned int hash(int value, unsigned int i) const;
 
     /**
-     * @brief k is the number of filters and m the size of the filters
+     * @brief k is the number of filters
      * */
     unsigned int k, m;
 

@@ -1,5 +1,5 @@
-#ifndef A_MULTIPLICATIVE_HASHING_H
-#define A_MULTIPLICATIVE_HASHING_H
+#ifndef A_MULTIPLICATIVE_HASH_H
+#define A_MULTIPLICATIVE_HASH_H
 
 #include <cmath>
 
@@ -13,13 +13,13 @@
      *        The art of computer programming
      *        volume 3[516]
  * */
-class MultiplicativeHashing : public HashFunction{
+class MultiplicativeHash : public HashFunction{
 
 public:
     /**
     * @brief basic constructor, define the name
     * */
-    MultiplicativeHashing();
+    MultiplicativeHash();
 
     /**
      * @brief hash function operator
@@ -51,4 +51,4 @@ private:
 };
 
 
-#endif //A_MULTIPLICATIVE_HASHING_H
+#endif //A_MULTIPLICATIVE_HASH_H

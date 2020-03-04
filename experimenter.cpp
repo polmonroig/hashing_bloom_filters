@@ -4,8 +4,8 @@
 #include "data/data_manager.h"
 #include "experiment/experiment.h"
 #include "dictionary/bloom_filters/bloom_filters.h"
-#include "hash_functions/division_hash.h"
-#include "hash_functions/multiplicative_hashing.h"
+#include "hash/hash_functions/division_hash.h"
+#include "hash/hash_functions/multiplicative_hash.h"
 
 int main(){
 
@@ -27,7 +27,7 @@ int main(){
 
     // DICTIONARY DEFINITION
 
-    BloomFilters filters(tableSize, nHashFunctions, DivisionHash(), MultiplicativeHashing());
+    BloomFilters filters(tableSize, nHashFunctions, DivisionHash(), MultiplicativeHash());
 
     // DEFINE AND RUN EXPERIMENT
     Experiment experiment(filters);
