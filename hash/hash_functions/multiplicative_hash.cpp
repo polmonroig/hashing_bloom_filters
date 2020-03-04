@@ -12,5 +12,5 @@ MultiplicativeHash::MultiplicativeHash() {
 
 
 unsigned int MultiplicativeHash::operator()(int key, unsigned int tableSize) const {
-    return floor(tableSize * ((fractionADivWord * key) % 1));
+    return ((A * key) % wordSize) % tableSize ;
 }

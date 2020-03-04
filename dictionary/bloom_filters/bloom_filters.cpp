@@ -5,11 +5,11 @@
  *               PUBLIC
  *  =================================*/
 
-BloomFilters::BloomFilters(int tableSize, int nHashFunctions, HashFunction const &hash1, HashFunction const &hash2) {
+BloomFilters::BloomFilters(int tableSize, int nHashFunctions, HashFunction &hash1, HashFunction &hash2) {
     k = nHashFunctions;
     m = tableSize;
-    h1 = hash1;
-    h2 = hash2;
+    h1 = &hash1;
+    h2 = &hash2;
     filters = std::vector<bool>(m, false);
 }
 
@@ -33,5 +33,5 @@ void BloomFilters::insert(int value) {
  *  =================================*/
 
 unsigned int BloomFilters::hash(int value, unsigned int i) const {
-    return (h1(value, m) + i * h2(value, m)) % m;
+    return ((*h1)(value, m) + i * (*h2)(value, m)) % m;
 }

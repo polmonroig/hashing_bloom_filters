@@ -23,7 +23,7 @@ public:
      * @param hash1 first hash definition
      * @param hash2 second hash definition
      * */
-    BloomFilters(int tableSize, int nHashFunctions, HashFunction const &hash1, HashFunction const &hash2);
+    BloomFilters(int tableSize, int nHashFunctions, HashFunction  &hash1, HashFunction  &hash2);
 
     /**
      * @brief Function that inserts a value into the bloom filter
@@ -57,7 +57,7 @@ private:
     /**
      * @brief the two basic hash functions
      * */
-    HashFunction h1, h2;
+    HashFunction* h1, *h2;
 
     /**
      * @brief filters that save the occurrence of a key

@@ -10,7 +10,7 @@
 int main(){
 
     // PARAMETER DEFINITION
-    int tableSize = 100;
+    int tableSize = 512;
     int n = 100;
     int nHashFunctions = 5;
     int seed = 4156156;
@@ -26,8 +26,9 @@ int main(){
     data.generateIntegerData(path, keyPercentage);
 
     // DICTIONARY DEFINITION
-
-    BloomFilters filters(tableSize, nHashFunctions, DivisionHash(), MultiplicativeHash());
+    auto h1 = DivisionHash();
+    auto h2 = MultiplicativeHash();
+    BloomFilters filters(tableSize, nHashFunctions, h1, h2);
 
     // DEFINE AND RUN EXPERIMENT
     Experiment experiment(filters);
