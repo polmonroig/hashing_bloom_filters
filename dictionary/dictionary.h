@@ -14,7 +14,7 @@ public:
      * @brief Function that inserts a value into the data structure
      * @param value is the key to insert
      * */
-    virtual void insert(int value);
+    virtual void insert(int value) = 0;
 
 
     /**
@@ -22,10 +22,12 @@ public:
      * @param value to search
      * @returns if found
      * */
-    virtual bool find(int value) const;
+    [[nodiscard]] virtual bool find(int value) const = 0;
 
 
 protected:
+
+
     int m;
 
 };

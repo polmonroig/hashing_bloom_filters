@@ -29,7 +29,7 @@ public:
      * @brief Function that inserts a value into the bloom filter
      * @param value is the key to insert
      * */
-    void insert(int value) final;
+    virtual void insert(int value) final;
 
     /**
      * @brief Function that finds if an item is in the dictionary
@@ -37,7 +37,7 @@ public:
      * @param value to search
      * @returns if found
      * */
-    bool find(int value) const final;
+    virtual bool find(int value) const final;
 
 private:
 

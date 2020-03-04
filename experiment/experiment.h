@@ -1,7 +1,7 @@
 #ifndef A_EXPERIMENT_H
 #define A_EXPERIMENT_H
 
-
+#include <iostream>
 #include <string>
 #include <vector>
 #include <cmath>
@@ -23,7 +23,7 @@ public:
      * @brief Generate a basic experiment with a defined dictionary
      * @param dict is the dictionary to test
      * */
-    explicit Experiment(Dictionary const& dict);
+    explicit Experiment(Dictionary  &dict);
 
     /**
      * @brief This functions tests the dictionary with the specified
@@ -42,9 +42,12 @@ private:
     /**
      * @brief is the current dictionary
      * */
-    Dictionary dictionary;
+    Dictionary* dictionary;
 
 
+    void buildTable(const std::vector<int> &vector);
+
+    void searchElements(const std::vector<int> &vector);
 };
 
 
