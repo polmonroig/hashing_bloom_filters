@@ -18,22 +18,21 @@ public:
 
     /**
      * @brief Default class constructor with hyper-parameters
-     * @param tableSize is the size of the filters
+     * @param tableSize is the size of the table
      * @param nHashFunctions is the number of hash functions to apply
      * @param hash1 first hash definition
      * @param hash2 second hash definition
      * */
-    SeparateChaining(int tableSize, int nHashFunctions, HashFunction const &hash1, HashFunction const &hash2);
+    SeparateChaining();
 
     /**
-     * @brief Function that inserts a value into the bloom filter
+     * @brief Function that inserts a value into the hash table
      * @param value is the key to insert
      * */
     virtual void insert(int value) final;
 
     /**
      * @brief Function that finds if an item is in the dictionary
-     *        with a probability of false positive greater than 1
      * @param value to search
      * @returns if found
      * */
@@ -42,27 +41,14 @@ public:
 private:
 
     /**
-     * @brief returns the ith hash of a value, function based to
-     *        Adam Kirsch,* Michael Mitzenmacher†
-     *        Less Hashing, Same Performance:
-     *        Building a Better Bloom Filter
+     * @brief the basic hash functions
      * */
-    unsigned int hash(int value, unsigned int i) const;
+    HashFunction h;
 
     /**
-     * @brief k is the number of filters
+     * @brief dictionary that stores the lists of keys
      * */
-    unsigned int k, m;
-
-    /**
-     * @brief the two basic hash functions
-     * */
-    HashFunction h1, h2;
-
-    /**
-     * @brief filters that save the occurrence of a key
-     * */
-    std::vector<bool> filters;
+    std::vector<list<int>> dictionary;
 
 };
 
