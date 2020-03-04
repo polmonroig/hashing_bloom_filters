@@ -3,6 +3,8 @@
 
 
 #include <string>
+#include <vector>
+#include <cmath>
 
 #include "../dictionary/dictionary.h"
 
@@ -27,7 +29,7 @@ public:
      * @brief This functions tests the dictionary with the specified
      *        parameters and saves the results
      * */
-    void test();
+    void test(std::vector<int> const& keys, std::vector<int> const& text);
 
     /**
      * @brief This function writes the results of the test into a file

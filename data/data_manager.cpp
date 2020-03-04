@@ -1,5 +1,7 @@
+#include <cmath>
 #include <iostream>
 #include <filesystem>
+#include <cmath>
 
 #include "data_manager.h"
 
@@ -18,7 +20,9 @@ void DataManager::setSize(unsigned int size) {
 }
 
 
-void DataManager::generateIntegerData(std::string const& fileName, float appearance){
+void DataManager::generateIntegerData(std::string const& path, float appearance)const{
+
+    auto fileName = path + getFileExtension();
 
     if(!std::filesystem::exists(fileName + "_dict")){
         std::ofstream file;
@@ -26,16 +30,15 @@ void DataManager::generateIntegerData(std::string const& fileName, float appeara
         // write dictionary
         file.open(fileName + "_dict", std::ios::out);
         auto data = RandGenerator::generatePermutations(randomSeed, sequenceSize);
-        writeData(file, data);
+        writeData(file, data, sequenceSize);
         file.close();
 
         // write text file
         file.open(fileName + "_text" , std::ios::out);
-        data = RandGenerator::generatePermutations(randomSeed, int(float(sequenceSize) * appearance));
-        writeData(file, data);
-        randomSeed = RandGenerator::generate(randomSeed);
-        data = RandGenerator::generatePermutations(randomSeed, sequenceSize * 2);
-        writeData(file, data);
+        writeData(file, data, std::ceil(sequenceSize * appearance));
+
+        data = RandGenerator::generatePermutations(data[data.size() - 1], sequenceSize * 2);
+        writeData(file, data, sequenceSize * 2);
 
         file.close();
     }
@@ -46,14 +49,41 @@ void DataManager::generateIntegerData(std::string const& fileName, float appeara
 
 }
 
+std::vector<int> DataManager::getIntegerText(const std::string &path) const{
+    auto fileName = path + getFileExtension() + "_dict";
+    return getData(path);
+}
+
+std::vector<int> DataManager::getIntegerKeys(const std::string &path)const {
+    auto fileName = path + getFileExtension() + "_text";
+    return getData(path);
+}
+
 
 /** =================================
  *               PRIVATE
  *  =================================*/
 
 
-void DataManager::writeData(std::ofstream & file, std::vector<BigInt > const& data)const{
-    for(auto const& value : data){
-        file << std::to_string(value) + "\n";
+std::vector<int> DataManager::getData(std::string const& fileName) const{
+    std::vector<int> data;
+    std::ifstream file;
+    file.open(fileName, std::ios::in);
+    BigInt input;
+    while(file >> input){
+        data.push_back(input);
     }
+    return data;
 }
+
+std::string DataManager::getFileExtension() const{
+    return "integer_" + std::to_string(randomSeed) + "_" + std::to_string(sequenceSize);
+}
+
+void DataManager::writeData(std::ofstream & file, std::vector<BigInt > const& data, int size)const{
+    for(int i = 0; i < size; ++i)
+        file << std::to_string(data[i]) + "\n";
+
+}
+
+

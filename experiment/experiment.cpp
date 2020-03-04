@@ -5,11 +5,11 @@
  *               PUBLIC
  *  =================================*/
 
-void Experiment::test() {
+void Experiment::write(std::string const& fileName) const {
 
 }
 
-void Experiment::write(std::string const& fileName) const {
+void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text) {
 
 }
 
