@@ -3,12 +3,13 @@
 
 #include <vector>
 
-#include "../dictionary/dictionary.h"
-#include "../hash/hash_functions/hash_function.h"
+#include "../dictionary.h"
+#include "../../hash/hash_functions/hash_function.h"
 
 
 /**
- * @class Bloom Filters implementation for a space-efficient randomized data structure
+ * @class BloomFilters
+ * @brief Bloom Filters implementation for a space-efficient randomized data structure
  *        B. Bloom. “Space/Time Tradeoffs in Hash Coding with Allowable Errors.”
  *        Communications of the ACM 13:7 (1970), 422—426.
  * */
@@ -23,13 +24,13 @@ public:
      * @param hash1 first hash definition
      * @param hash2 second hash definition
      * */
-    BloomFilters(int tableSize, int nHashFunctions, HashFunction const &hash1, HashFunction const &hash2);
+    BloomFilters(int tableSize, int nHashFunctions, HashFunction  &hash1, HashFunction  &hash2);
 
     /**
      * @brief Function that inserts a value into the bloom filter
      * @param value is the key to insert
      * */
-    void insert(int value) final;
+    virtual void insert(int value) final;
 
     /**
      * @brief Function that finds if an item is in the dictionary
@@ -37,7 +38,7 @@ public:
      * @param value to search
      * @returns if found
      * */
-    bool find(int value) const final;
+    virtual bool find(int value) const final;
 
 private:
 
@@ -50,14 +51,14 @@ private:
     unsigned int hash(int value, unsigned int i) const;
 
     /**
-     * @brief k is the number of filters and m the size of the filters
+     * @brief k is the number of filters
      * */
     unsigned int k, m;
 
     /**
      * @brief the two basic hash functions
      * */
-    HashFunction h1, h2;
+    HashFunction* h1, *h2;
 
     /**
      * @brief filters that save the occurrence of a key

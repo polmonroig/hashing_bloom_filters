@@ -15,7 +15,8 @@ typedef long long unsigned int BigInt;
 
 
 /**
- * @class Random number generator that
+ * @class RandGenerator
+ * @brief Random number generator that
  *        generates a sequence of random numbers
  *        based on a specific seed. The numbers generated
  *        here are based on the Linear Congruential Method

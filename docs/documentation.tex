@@ -1,14 +1,16 @@
 \documentclass{article}
 
 
-
-
-\title{Hashing and Bloom filters comparison}
+\title{Hashing and Bloom filters key lookup comparison}
 \author{names}
 \date{\today}
 
-%\usepackage{titling}
 \usepackage{lipsum}
+\usepackage[backend=bibtex]{biblatex}
+\usepackage{graphicx}
+
+\bibliography{references}
+\nocite{*}
 
 \begin{document}
     \maketitle
@@ -21,13 +23,24 @@
     \section*{Introduction}
         \lipsum[2]
 
+    \section*{Experiment pipeline and methodology}
+        \lipsum[1]
+	\begin{figure}
+	  \includegraphics[width=\linewidth]{experiment_pipeline.png}
+	  \caption{Experiment pipeline}
+	  \label{fig:Pipeline}
+	\end{figure}
+	\lipsum[1]
     \section*{Data Generation}
         \lipsum[1]
-    \section*{Techniques used}
+    \section*{Experiment parameters}
         \lipsum[1]
+    \section*{Results}
 
     \section*{Discussion}
         \lipsum[1]
 
+
+    \printbibliography
 
 \end{document}

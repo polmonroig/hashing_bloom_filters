@@ -15,12 +15,17 @@ public:
 
     void setSize(unsigned int size);
 
-    void generateIntegerData(std::string const& fileName, float appearance) ;
+    void generateIntegerData(std::string const& path, float appearance) const;
+
+    [[nodiscard]] std::vector<int> getIntegerText(std::string const &path) const;
+
+    [[nodiscard]] std::vector<int> getIntegerKeys(const std::string &path) const;
 
 private:
 
-
-    void writeData(std::ofstream & file, std::vector<BigInt > const& data)const;
+    [[nodiscard]] std::string getFileExtension() const;
+    [[nodiscard]] std::vector<int> getData(std::string const& fileName) const;
+    void writeData(std::ofstream & file, std::vector<BigInt > const& data, int size)const;
 
     BigInt randomSeed;
     unsigned int sequenceSize;
