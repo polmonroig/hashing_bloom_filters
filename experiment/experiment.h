@@ -10,7 +10,8 @@
 
 
 /**
- * @class The experiment class receives some parameters and a dictionary
+ * @class Experiment
+ *        The experiment class receives some parameters and a dictionary
  *        and tests them, the results are saved in a data structure
  *        and finally they can be written into a file
  *

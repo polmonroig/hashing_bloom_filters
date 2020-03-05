@@ -5,7 +5,8 @@
 
 
 /**
- * @class Abstract definition of a hash function, a hash function
+ * @class HashFunction
+ * @brief Abstract definition of a hash function, a hash function
  *        can be called and it has a respective name
  * */
 class HashFunction {

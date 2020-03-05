@@ -3,7 +3,8 @@
 
 
 /**
- * @class The Dictionary class is an interface for all the hash tables
+ * @class Dictionary
+ * @brief The Dictionary class is an interface for all the hash tables
  *        and data structures that implement a key search
  * */
 class Dictionary {

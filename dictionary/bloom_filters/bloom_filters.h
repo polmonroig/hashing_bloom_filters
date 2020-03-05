@@ -8,7 +8,9 @@
 
 
 /**
- * @class Bloom Filters implementation for a space-efficient randomized data structure
+ * @class
+ *
+ * @brief Bloom Filters implementation for a space-efficient randomized data structure
  *        B. Bloom. “Space/Time Tradeoffs in Hash Coding with Allowable Errors.”
  *        Communications of the ACM 13:7 (1970), 422—426.
  * */

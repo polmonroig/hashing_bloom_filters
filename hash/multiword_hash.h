@@ -12,7 +12,8 @@
 #include "hash_functions/hash_function.h"
 
 /**
- * @class Represents a hash function that recursively hashes
+ * @class MultiWordHash
+ * @brief Represents a hash function that recursively hashes
  *        a sequence of integers with a specified single hash function
  * */
 class MultiWordHash {

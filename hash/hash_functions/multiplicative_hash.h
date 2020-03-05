@@ -7,11 +7,12 @@
 
 
 /**
- * @class hash multiplicative function
-     *        referencing
-     *        D.E. Knuth
-     *        The art of computer programming
-     *        volume 3[516]
+ * @class MultiplicativeHash
+ * @brief hash multiplicative function
+ *         referencing
+ *         D.E. Knuth
+ *         The art of computer programming
+ *         volume 3[516]
  * */
 class MultiplicativeHash : public HashFunction{
 

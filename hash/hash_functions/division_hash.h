@@ -8,11 +8,13 @@
 #include "hash_function.h"
 
 /**
- * @class hash division function
-     *        referencing
-     *        D.E. Knuth
-     *        The art of computer programming
-     *        volume 3[515-516]
+ * @class DivisionHash
+ *
+ * @brief hash division function
+ *        referencing
+ *        D.E. Knuth
+ *        The art of computer programming
+ *        volume 3[515-516]
  * */
 class DivisionHash : public HashFunction{
 
