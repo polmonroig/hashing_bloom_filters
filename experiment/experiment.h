@@ -4,10 +4,17 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 #include <cmath>
+#include <chrono>
 
 #include "../dictionary/dictionary.h"
 
+
+/**
+  * @typedef type definition for a really big double
+  * */
+typedef long double BigDouble;
 
 /**
  * @class Experiment
@@ -41,13 +48,48 @@ public:
 private:
 
     /**
+     * @brief represents the initial time for a task
+     * */
+    std::chrono::steady_clock::time_point startPoint;
+
+    /**
+     * @brief represents the final time for a task
+     * */
+    std::chrono::steady_clock::time_point endPoint;
+
+    /**
+     * @brief contains the times of the successful lookups of the experiment
+     * */
+    std::list<BigDouble > successLookupTimes;
+
+    /**
+    * @brief contains the times of the failed lookups of the experiment
+    * */
+    std::list<BigDouble> failLookupTimes;
+
+    BigDouble successLookupTimeMean;
+
+    BigDouble failLookupTimeMean;
+
+    /**
      * @brief is the current dictionary
      * */
     Dictionary* dictionary;
 
+    void startTimer();
+    void endTimer();
+    double getElapsedTime() const;
 
+    /**
+     * @brief test to build a table with the specified keys
+     * @param vector keys to insert into the dictionary
+     * */
     void buildTable(const std::vector<int> &vector);
 
+    /**
+     * @brief test to search n elements in the dictionary and save the results
+     * @param vector contains the elements to search
+     * */
     void searchElements(const std::vector<int> &vector);
 };
 

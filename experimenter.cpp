@@ -10,10 +10,10 @@
 int main(){
 
     // PARAMETER DEFINITION
-    int tableSize = 512;
-    int n = 100;
+    int tableSize = 10000000;
+    int n = 10000000;
     int nHashFunctions = 5;
-    int seed = 4156156;
+    int seed = 165516;
     float keyPercentage = 0.5;
 
     // RANDOM DATA GENERATION
