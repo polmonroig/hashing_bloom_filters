@@ -6,7 +6,8 @@ OUTNAME = -o experimenter
 
 # directory definition
 DATA = data/data_manager.cpp
-DICTIONARY = dictionary/bloom_filters/bloom_filters.cpp
+DICTIONARYBLOOM = dictionary/bloom_filters/bloom_filters.cpp
+DICTIONARYCHAININGLISTS = dictionary/separate_chaining/separate_chaining_lists.cpp
 EXPERIMENT = experiment/experiment.cpp
 HASH_FUNCTIONS = hash/hash_functions/hash_function.cpp \
  				 hash/hash_functions/division_hash.cpp \
@@ -14,7 +15,7 @@ HASH_FUNCTIONS = hash/hash_functions/hash_function.cpp \
 RANDOM = random/rand_generator.cpp
 MAIN = experimenter.cpp
 
-TARGET = $(RANDOM) $(DATA) $(HASH_FUNCTIONS) $(DICTIONARY) $(EXPERIMENT)
+TARGET = $(RANDOM) $(DATA) $(HASH_FUNCTIONS) $(DICTIONARYBLOOM) $(DICTIONARYCHAININGLISTS) $(EXPERIMENT)
 
 # rule definition
 experimenter: $(TARGET)
