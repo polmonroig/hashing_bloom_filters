@@ -1,6 +1,7 @@
 #ifndef A_SEPARATE_CHAINING_LIST_H
 #define A_SEPARATE_CHAINING_LIST_H
 
+
 #include <list>
 #include <vector>
 
@@ -13,7 +14,7 @@
             The time for hash table operations is the time to find the bucket (which is constant) plus the time for the list operation.
             In a good hash table, each bucket has zero or one entries, and sometimes two or three, but rarely more than that. 
  * */
-class SeparateChainingLists : public Dictionary{
+class SeparateChainingLists : public Dictionary {
 
 public:
 
@@ -37,7 +38,7 @@ public:
      * @param value to search
      * @returns if found
      * */
-    virtual bool find(int value) const final;
+    virtual bool find(int value) final;
 
 private:
 
@@ -51,11 +52,10 @@ private:
      * */
     std::vector<std::list<int> > dictionary;
 
-
     /**
      * @brief function that return the hashed value of a key
      * */
-    unsigned int hash(int key);
+    unsigned int hash(int key) const;
 
 };
 
