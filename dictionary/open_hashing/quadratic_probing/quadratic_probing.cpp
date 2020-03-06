@@ -38,7 +38,7 @@ void QuadraticProbing::insert(int value) {
 		}
 	}
 	colisions = i;
-	if (!finish) cerr << "The hash table is already full.";
+	if (!finish) cerr << "The hash table is already full." << endl;
 }
 
 

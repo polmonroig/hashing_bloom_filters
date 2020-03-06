@@ -14,8 +14,8 @@
 int main(){
 
     // PARAMETER DEFINITION
-    int tableSize = 10000000;
-    int n = 10000;
+    int tableSize = 5000;
+    int n = 2500;
     int nHashFunctions = 5;
     int seed = 165516;
     float keyPercentage = 0.5;
@@ -32,7 +32,7 @@ int main(){
     // DICTIONARY DEFINITION
     auto h1 = DivisionHash();
     auto h2 = MultiplicativeHash();
-    DoubleHashing filters(tableSize, h1, h2);
+    LinearProbing filters(tableSize, h1);
 
     // DEFINE AND RUN EXPERIMENT
     Experiment experiment(filters);

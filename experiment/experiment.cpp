@@ -17,8 +17,11 @@ void Experiment::write(std::string const& fileName) const {
 void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text) {
     buildTable(keys);
     double buildTime = getElapsedTime();
+    unsigned int colisions = dictionary->getColisions();
+    std::cout << "Colisions: " << colisions << std::endl;
     searchElements(text);
-
+    unsigned int falsePositives = successLookupTimes.size() - keys.size() / 2;
+    std::cout << "False positives: " << falsePositives << std:: endl;
 }
 
 
