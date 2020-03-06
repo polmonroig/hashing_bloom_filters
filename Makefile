@@ -22,6 +22,5 @@ TARGET = $(RANDOM) $(DATA) $(HASH_FUNCTIONS) $(DICTIONARYBLOOM) $(DICTIONARY_CHA
 experimenter: $(TARGET) $(MAIN)
 	$(COMPILER) $(STD) $(TARGET) $(MAIN) $(OUTNAME)
 
-docs : docs/documentation.tex
-	rm docs/documentation.pdf
-	pdflatex docs/documentation.tex docs/documentation.pdf
+clean:
+		rm experimenter
