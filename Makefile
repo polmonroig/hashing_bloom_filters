@@ -19,7 +19,7 @@ MAIN = experimenter.cpp
 TARGET = $(RANDOM) $(DATA) $(HASH_FUNCTIONS) $(DICTIONARYBLOOM) $(DICTIONARY_CHAINING_LISTS) $(DICTIONARY_CHAINING_VECTOR) $(EXPERIMENT)
 
 # rule definition
-experimenter: $(TARGET)
+experimenter: $(TARGET) $(MAIN)
 	$(COMPILER) $(STD) $(TARGET) $(MAIN) $(OUTNAME)
 
 docs : docs/documentation.tex

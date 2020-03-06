@@ -11,7 +11,7 @@ int main(){
 
     // PARAMETER DEFINITION
     int tableSize = 10000000;
-    int n = 10000000;
+    int n = 1000;
     int nHashFunctions = 5;
     int seed = 165516;
     float keyPercentage = 0.5;
@@ -22,7 +22,7 @@ int main(){
     data.setSeed(seed);
     data.setSize(n);
     // creates the files if they do not exist already
-    std::string path = "/home/pol/Documents/fib/A/data/integer/";
+    std::string path = "data/integer/";
     data.generateIntegerData(path, keyPercentage);
 
     // DICTIONARY DEFINITION

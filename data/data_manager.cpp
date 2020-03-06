@@ -1,6 +1,5 @@
 #include <cmath>
 #include <iostream>
-#include <filesystem>
 #include <cmath>
 
 #include "data_manager.h"
@@ -23,8 +22,9 @@ void DataManager::setSize(unsigned int size) {
 void DataManager::generateIntegerData(std::string const& path, float appearance)const{
 
     auto fileName = path + getFileExtension();
-
-    if(!std::filesystem::exists(fileName + "_dict")){
+    std::ifstream fileOpener(fileName + "_dict");
+    if(!fileOpener.is_open()){
+        fileOpener.close();
         std::ofstream file;
         std::cout << "Creating file" << std::endl;
         // write dictionary
@@ -82,8 +82,6 @@ std::string DataManager::getFileExtension() const{
 
 void DataManager::writeData(std::ofstream & file, std::vector<BigInt > const& data, int size)const{
     for(int i = 0; i < size; ++i)
-        file << std::to_string(data[i] % 100000) + "\n";
+        file << std::to_string(data[i]) + "\n";
 
 }
-
-
