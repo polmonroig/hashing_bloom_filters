@@ -1,7 +1,7 @@
 #include "experiment.h"
 
 
-/** =================================
+/* =================================
  *               PUBLIC
  *  =================================*/
 
@@ -20,12 +20,12 @@ void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text
     unsigned int colisions = dictionary->getColisions();
     std::cout << "Colisions: " << colisions << std::endl;
     searchElements(text);
-    unsigned int falsePositives = successLookupTimes.size() - keys.size() / 2;
+    unsigned int falsePositives = successLookupTimes - keys.size() / 2;
     std::cout << "False positives: " << falsePositives << std:: endl;
 }
 
 
-/** =================================
+/* =================================
  *               PRIVATE
  *  =================================*/
 
@@ -41,28 +41,30 @@ void Experiment::buildTable(const std::vector<int> &vector) {
 void Experiment::searchElements(const std::vector<int> &vector) {
     successLookupTimeMean = 0;
     failLookupTimeMean = 0;
+    successLookupTimes = 0;
+    failLookupTimes = 0;
     for(auto const& value : vector) {
         startTimer();
         bool found = dictionary->find(value);
         endTimer();
         double lookupTime = getElapsedTime();
         if (found) {
-            successLookupTimes.push_back(lookupTime);
+            successLookupTimes++;
             successLookupTimeMean += lookupTime;
         } else {
-            failLookupTimes.push_back(lookupTime);
+            failLookupTimes++;
             failLookupTimeMean += lookupTime;
         }
     }
 
-    if(!successLookupTimes.empty())
-        successLookupTimeMean /= successLookupTimes.size();
-    if(!failLookupTimes.empty())
-        failLookupTimeMean /= failLookupTimes.size();
+    if(successLookupTimes > 0)
+        successLookupTimeMean /= successLookupTimes;
+    if(failLookupTimes > 0)
+        failLookupTimeMean /= failLookupTimes;
 
-    std::cout << "Succesful lookups: " << successLookupTimes.size() << std::endl;
+    std::cout << "Succesful lookups: " << successLookupTimes << std::endl;
     std::cout << "Succesful mean lookup time: " <<successLookupTimeMean << std::endl;
-    std::cout << "Failed lookups: " << failLookupTimes.size() << std::endl;
+    std::cout << "Failed lookups: " << failLookupTimes << std::endl;
     std::cout << "Failed mean lookup time: " <<failLookupTimeMean << std::endl;
 
 

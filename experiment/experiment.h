@@ -58,14 +58,14 @@ private:
     std::chrono::steady_clock::time_point endPoint;
 
     /**
-     * @brief contains the times of the successful lookups of the experiment
+     * @brief contains the number of the successful lookups of the experiment
      * */
-    std::list<BigDouble > successLookupTimes;
+    unsigned int successLookupTimes;
 
     /**
-    * @brief contains the times of the failed lookups of the experiment
+    * @brief contains the number of the failed lookups of the experiment
     * */
-    std::list<BigDouble> failLookupTimes;
+    unsigned int failLookupTimes;
 
     BigDouble successLookupTimeMean;
 
