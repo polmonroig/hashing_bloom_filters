@@ -4,25 +4,24 @@
 #include <vector>
 
 #include "../../dictionary.h"
-#include "../../../hash/hash_functions/division_hash.h"
+#include "../../../hash/hash_functions/hash_function.h"
 
 class LinearProbing : public Dictionary{
 
 public: 
 
-	LinearProbing(int tableSize, HashFunction const &hash);
+	LinearProbing(int tableSize, HashFunction &hash);
 
 	virtual void insert(int value) final;
 
 	virtual bool find(int value) final;
 
-	std::vector<int> hashTable;
-	unsigned int getPosition(int value) const;
 private:
 
-	HashFunction h;
+	unsigned int getPosition(int value) const;
+	std::vector<int> hashTable;
 
-	
+	HashFunction *h;
 	unsigned int i;
 
 };

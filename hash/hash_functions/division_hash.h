@@ -34,7 +34,7 @@ public:
      * @param tableSize is the size of the hash table
      * @returns the hashed value of the key
      * */
-    unsigned int operator()(int key, unsigned int tableSize) const final ;
+    virtual unsigned int operator()(int key, unsigned int tableSize) const final ;
 
 private:
 

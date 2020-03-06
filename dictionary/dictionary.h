@@ -23,7 +23,7 @@ public:
      * @param value to search
      * @returns if found
      * */
-    [[nodiscard]] virtual bool find(int value) const = 0;
+    [[nodiscard]] virtual bool find(int value) = 0;
 
 
 protected:

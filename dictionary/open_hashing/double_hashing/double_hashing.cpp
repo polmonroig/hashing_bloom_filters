@@ -1,4 +1,4 @@
-#include "linear_probing.h"
+#include "double_hashing.h"
 #include <iostream>
 using namespace std;
 
@@ -6,14 +6,15 @@ using namespace std;
  *               PUBLIC
  *  =================================*/
 
-LinearProbing::LinearProbing(int tableSize, HashFunction &hash){
+DoubleHashing::DoubleHashing(int tableSize, HashFunction &hash1, HashFunction &hash2) {
 	m = tableSize;
-	h = &hash;
+	h1 = &hash1;
+	h2 = &hash2;
 	i = 0;
 	hashTable = vector<int>(m,-1);
 }
 
-bool LinearProbing::find(int value) {
+bool DoubleHashing::find(int value) {
 	i = 0;
 	while(i < m) {
 		unsigned int key = getPosition(value);
@@ -26,7 +27,7 @@ bool LinearProbing::find(int value) {
 	return false;
 }
 
-void LinearProbing::insert(int value) {
+void DoubleHashing::insert(int value) {
 	if (i < m) hashTable[getPosition(value)] = value;
 	else cerr << "The hash table is already full.";
 }
@@ -35,8 +36,6 @@ void LinearProbing::insert(int value) {
  *               PRIVATE
  *  =================================*/
 
-unsigned int LinearProbing::getPosition(int value) const {
-	return (((*h)(value,m) + i) % m);
+unsigned int DoubleHashing::getPosition(int value) const {
+	return (((*h1)(value,m) + i*(*h2)(value,m)) % m);
 }
-
-

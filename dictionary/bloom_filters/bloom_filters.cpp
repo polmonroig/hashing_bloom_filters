@@ -13,7 +13,7 @@ BloomFilters::BloomFilters(int tableSize, int nHashFunctions, HashFunction &hash
     filters = std::vector<bool>(m, false);
 }
 
-bool BloomFilters::find(int value) const {
+bool BloomFilters::find(int value) {
 
     for(unsigned int i = 0; i < k; ++i){
         if(!filters[hash(value, i)])

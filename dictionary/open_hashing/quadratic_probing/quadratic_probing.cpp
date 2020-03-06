@@ -1,4 +1,4 @@
-#include "linear_probing.h"
+#include "quadratic_probing.h"
 #include <iostream>
 using namespace std;
 
@@ -6,14 +6,15 @@ using namespace std;
  *               PUBLIC
  *  =================================*/
 
-LinearProbing::LinearProbing(int tableSize, HashFunction &hash){
+
+QuadraticProbing::QuadraticProbing(int tableSize, HashFunction &hash) {
 	m = tableSize;
 	h = &hash;
 	i = 0;
 	hashTable = vector<int>(m,-1);
 }
 
-bool LinearProbing::find(int value) {
+bool QuadraticProbing::find(int value) {
 	i = 0;
 	while(i < m) {
 		unsigned int key = getPosition(value);
@@ -26,7 +27,7 @@ bool LinearProbing::find(int value) {
 	return false;
 }
 
-void LinearProbing::insert(int value) {
+void QuadraticProbing::insert(int value) {
 	if (i < m) hashTable[getPosition(value)] = value;
 	else cerr << "The hash table is already full.";
 }
@@ -35,8 +36,6 @@ void LinearProbing::insert(int value) {
  *               PRIVATE
  *  =================================*/
 
-unsigned int LinearProbing::getPosition(int value) const {
-	return (((*h)(value,m) + i) % m);
+unsigned int QuadraticProbing::getPosition(int value) const {
+	return (int((*h)(value,m) + c*i + c*i*i) % m);
 }
-
-

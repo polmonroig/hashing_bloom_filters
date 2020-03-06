@@ -4,14 +4,17 @@
 #include "data/data_manager.h"
 #include "experiment/experiment.h"
 #include "dictionary/bloom_filters/bloom_filters.h"
+#include "dictionary/open_hashing/double_hashing/double_hashing.h"
+#include "dictionary/open_hashing/linear_probing/linear_probing.h"
 #include "hash/hash_functions/division_hash.h"
 #include "hash/hash_functions/multiplicative_hash.h"
+
 
 int main(){
 
     // PARAMETER DEFINITION
     int tableSize = 10000000;
-    int n = 1000;
+    int n = 100;
     int nHashFunctions = 5;
     int seed = 165516;
     float keyPercentage = 0.5;
@@ -28,7 +31,7 @@ int main(){
     // DICTIONARY DEFINITION
     auto h1 = DivisionHash();
     auto h2 = MultiplicativeHash();
-    BloomFilters filters(tableSize, nHashFunctions, h1, h2);
+    QuadraticProbing filters(tableSize, h1);
 
     // DEFINE AND RUN EXPERIMENT
     Experiment experiment(filters);

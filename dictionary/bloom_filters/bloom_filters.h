@@ -38,7 +38,7 @@ public:
      * @param value to search
      * @returns if found
      * */
-    virtual bool find(int value) const final;
+    virtual bool find(int value) final;
 
 private:
 

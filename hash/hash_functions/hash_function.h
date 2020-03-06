@@ -22,7 +22,7 @@ public:
      * @param tableSize is the size of the hash table
      * @returns the hashed value of the key
      * */
-    virtual unsigned int operator()(int key, unsigned int tableSize) const;
+    virtual unsigned int operator()(int key, unsigned int tableSize) const = 0;
 
     /**
      * @brief getter for the name of the hash function
@@ -30,7 +30,7 @@ public:
      * @post true
      * @returns the hash function name
      * */
-    std::string getName() const;
+    std::string getName() const = delete;
 
 protected:
 
