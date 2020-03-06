@@ -34,6 +34,8 @@ int main(){
     Experiment experiment(filters);
     auto keys = data.getIntegerKeys(path);
     auto text = data.getIntegerText(path);
+    std::cout << "Number of keys: " << keys.size() << std::endl;
+    std::cout << "Number of texts: " << text.size() << std::endl;
     experiment.test(keys, text);
     experiment.write("tests/experiment.epx");
 

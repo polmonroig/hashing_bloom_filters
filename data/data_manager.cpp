@@ -50,12 +50,12 @@ void DataManager::generateIntegerData(std::string const& path, float appearance)
 }
 
 std::vector<int> DataManager::getIntegerText(const std::string &path) const{
-    auto fileName = path + getFileExtension() + "_dict";
+    auto fileName = path + getFileExtension() + "_text";
     return getData(fileName);
 }
 
 std::vector<int> DataManager::getIntegerKeys(const std::string &path)const {
-    auto fileName = path + getFileExtension() + "_text";
+    auto fileName = path + getFileExtension() + "_dict";
     return getData(fileName);
 }
 
@@ -67,9 +67,11 @@ std::vector<int> DataManager::getIntegerKeys(const std::string &path)const {
 
 std::vector<int> DataManager::getData(std::string const& fileName) const{
     std::vector<int> data;
+    std::cout << "Reading file " << fileName  << std::endl;
     std::ifstream file;
     file.open(fileName, std::ios::in);
-    int input;
+    if(!file.is_open())std::cerr << "Coudn't open file"<< std::endl;
+    BigInt input;
     while(file >> input){
         data.push_back(input);
     }
