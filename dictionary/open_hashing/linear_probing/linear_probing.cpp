@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-/* =================================
+/*  =================================
  *               PUBLIC
  *  =================================*/
 
@@ -16,8 +16,9 @@ bool LinearProbing::find(int value) {
 	unsigned int i = 0;
 	while(i < m) {
 		unsigned int key = getPosition(value, i);
-		if (hashTable[key] != -1) {
-			if (hashTable[key] != value) ++i;
+		unsigned int pos = hashTable[key];
+		if (pos != -1) {
+			if (pos != value) ++i;
 			else return true;
 		}
 		else return false;
@@ -44,7 +45,8 @@ void LinearProbing::insert(int value) {
 unsigned int LinearProbing::getColisions() const {
 	return colisions;
 }
-/* =================================
+
+/*  =================================
  *               PRIVATE
  *  =================================*/
 

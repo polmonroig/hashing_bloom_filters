@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "double_hashing/double_hashing.h"
+#include "cockoo_hashing/cockoo_hashing.h"
 #include <vector>
 #include "../../hash/hash_functions/division_hash.h"
 #include "../../hash/hash_functions/multiplicative_hash.h"
@@ -9,22 +9,26 @@ using namespace std;
 
 int main() {
 
-//per compilar g++ -std=c++17 -o main main.cpp double_hashing/double_hashing.cpp ../../hash/hash_functions/division_hash.cpp ../../hash/hash_functions/multiplicative_hash.cpp ../../hash/hash_functions/hash_function.cpp
+//per compilar g++ -std=c++17 -o main main.cpp cockoo_hashing/cockoo_hashing.cpp ../../hash/hash_functions/division_hash.cpp ../../hash/hash_functions/multiplicative_hash.cpp ../../hash/hash_functions/hash_function.cpp
 
 
-	vector<int> keys{2,3,4,5};
-	vector<int> text{2,3,4,5,2,3,3,3,6};
+	vector<int> keys{2,3,4,5,10,15};
+	vector<int> text{2,3,4,5,10,15,6,11,12,13};
 
-	DoubleHashing linear(keys.size(), DivisionHash(), MultiplicativeHash());
+	auto h1 = DivisionHash();
+	auto h2 = MultiplicativeHash();
+
+	CockooHashing linear(10, h1, h2, 4);
 
 	for (int i = 0; i < text.size(); ++i) {
 		if (linear.find(text[i])) cout <<"Key " << text[i] << " found." << endl;
 		else {
 			cout << "Key " << text[i] << " not found.";
 			cout << endl;
-			cout << "Linear " << linear.getPosition(text[i]) << endl;
+			pair<unsigned int, unsigned int> p = linear.getPositions(text[i]);
+			cout << "Linear " << p.first << " " << p.second << endl;
 			linear.insert(text[i]);
-			for(int i = 0; i < keys.size(); ++i) {
+			for(int i = 0; i < 10; ++i) {
 				cout << linear.hashTable[i] << ' ';
 			}
 			cout << endl;

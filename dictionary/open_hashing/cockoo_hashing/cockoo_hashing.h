@@ -1,0 +1,81 @@
+#ifndef A_COCKOO_HASHING_H
+#define A_COCKOO_HASHING_H
+
+#include <vector>
+
+
+#include "../../dictionary.h"
+#include "../../../hash/hash_functions/hash_function.h"
+
+/**
+ * @class CockooHashing
+ * @brief CockooHashing is a form of open addressing which uses
+ * the cockoo analogy in order to resolve collisions in hash 
+ * tables with worst-case constant lookup time.
+ * */
+
+class CockooHashing : public Dictionary {
+	
+	public:
+
+		/**
+		 * @brief Default class constructor with hyper-parameters
+		 * @param tableSize is the size of the hash table
+		 * @param hash1 first hash definition
+     	 * @param hash2 second hash definition
+     	 * @param max maximum number of cockoo iterations
+		 * */
+		CockooHashing(int tableSize, HashFunction &hash1, HashFunction &hash2, unsigned int max);
+
+		/**
+	     * @brief Function that inserts a value into the bloom filter
+	     * @param value is the key to insert
+	     * */
+		virtual void insert(int value) final;
+
+		/**
+		 * @brief Function that finds if an item is in the hash table
+		 * @param value to search
+		 * @returns if found
+		 * */
+		virtual bool find(int value) final;
+
+		/**
+		 * @brief Function that returns the number of colisions on the hash table 
+		 * */
+		virtual unsigned int getColisions() const;
+
+	private:
+		
+		/**
+		 * @brief returns a pair with the possible positions on the hash table 
+		 *        for a key given by the hash functions 
+		 * @param value is the key
+		 * */
+		std::pair<unsigned int, unsigned int> getPositions(int value) const;
+
+		/**
+		 * @brief hash table that stores keys
+		 * */
+		std::vector<int> hashTable;
+
+		/**
+		 * @brief executes the functionality of cuckoo hashing
+		 * @param value is the key to insert or to change position
+		 * @param pos is the position in which to insert the key
+		 * @param i value that iterates until the maximum one
+		 */ 
+		void cockoo(int value, unsigned int pos, unsigned int i);
+
+		/**
+	     * @brief two basic hash functions
+	     * */
+		HashFunction *h1, *h2;
+
+		/**
+		 * @brief maximum value for the cockoo loop
+		 * */
+		unsigned int maxLoop;
+};
+
+#endif

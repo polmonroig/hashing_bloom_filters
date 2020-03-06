@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-/* =================================
+/*  =================================
  *               PUBLIC
  *  =================================*/
 
@@ -17,8 +17,9 @@ bool DoubleHashing::find(int value) {
 	unsigned int i = 0;
 	while(i < m) {
 		unsigned int key = getPosition(value, i);
-		if (hashTable[key] != -1) {
-			if (hashTable[key] != value) ++i;
+		unsigned int pos = hashTable[key];
+		if (pos != -1) {
+			if (pos != value) ++i;
 			else return true;
 		}
 		else return false;
@@ -46,7 +47,7 @@ unsigned int DoubleHashing::getColisions() const {
 	return colisions;
 }
 
-/* =================================
+/*  =================================
  *               PRIVATE
  *  =================================*/
 

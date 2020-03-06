@@ -38,7 +38,9 @@ public:
      * */
     virtual bool find(int value) final;
 
-
+    /**
+     * @brief Function that returns the number of colisions on the filter
+     * */
     virtual unsigned int getColisions() const;
     
 

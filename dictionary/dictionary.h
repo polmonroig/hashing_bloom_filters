@@ -37,7 +37,9 @@ protected:
     int m;
 
 
-
+    /**
+     * @brief colisions is the number of colisions of the table
+    * */
     unsigned int colisions;
 
 };

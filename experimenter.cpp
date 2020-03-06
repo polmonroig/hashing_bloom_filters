@@ -5,6 +5,7 @@
 #include "experiment/experiment.h"
 #include "dictionary/bloom_filters/bloom_filters.h"
 #include "dictionary/open_hashing/double_hashing/double_hashing.h"
+#include "dictionary/open_hashing/cockoo_hashing/cockoo_hashing.h"
 #include "dictionary/open_hashing/linear_probing/linear_probing.h"
 #include "dictionary/open_hashing/quadratic_probing/quadratic_probing.h"
 #include "hash/hash_functions/division_hash.h"
@@ -14,8 +15,8 @@
 int main(){
 
     // PARAMETER DEFINITION
-    int tableSize = 5000;
-    int n = 2500;
+    int tableSize = 10000;
+    int n = 4000;
     int nHashFunctions = 5;
     int seed = 165516;
     float keyPercentage = 0.5;
@@ -32,7 +33,7 @@ int main(){
     // DICTIONARY DEFINITION
     auto h1 = DivisionHash();
     auto h2 = MultiplicativeHash();
-    LinearProbing filters(tableSize, h1);
+    DoubleHashing filters(tableSize, h1, h2);
 
     // DEFINE AND RUN EXPERIMENT
     Experiment experiment(filters);
