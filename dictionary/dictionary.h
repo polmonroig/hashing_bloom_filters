@@ -26,12 +26,19 @@ public:
     [[nodiscard]] virtual bool find(int value) = 0;
 
 
+    virtual unsigned int getColisions() const = 0;
+
+
 protected:
 
     /**
      * @brief m is the size of the table
      * */
     int m;
+
+
+
+    unsigned int colisions;
 
 };
 

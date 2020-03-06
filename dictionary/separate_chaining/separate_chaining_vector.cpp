@@ -1,7 +1,7 @@
 #include "separate_chaining_vector.h"
 
 
-/** =================================
+/* =================================
  *               PUBLIC
  *  =================================*/
 
@@ -33,7 +33,11 @@ bool SeparateChainingVector::find(int value) {
 	return false;
 }
 
-/** =================================
+unsigned int SeparateChainingVector::getColisions() const {
+	return colisions;
+}
+
+/* =================================
  *               PRIVATE
  *  =================================*/
 

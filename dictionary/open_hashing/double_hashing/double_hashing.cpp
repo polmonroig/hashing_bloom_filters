@@ -37,7 +37,13 @@ void DoubleHashing::insert(int value) {
 			hashTable[key] = value;
 		}
 	}
+	colisions = i;
 	if (!finish) cerr << "The hash table is already full.";
+}
+
+
+unsigned int DoubleHashing::getColisions() const {
+	return colisions;
 }
 
 /* =================================

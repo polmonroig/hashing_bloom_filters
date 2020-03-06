@@ -28,6 +28,11 @@ void BloomFilters::insert(int value) {
     }
 }
 
+
+unsigned int BloomFilters::getColisions() const {
+    return 0;
+}
+
 /** =================================
  *               PRIVATE
  *  =================================*/

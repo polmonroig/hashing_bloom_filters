@@ -37,7 +37,13 @@ void QuadraticProbing::insert(int value) {
 			hashTable[key] = value;
 		}
 	}
+	colisions = i;
 	if (!finish) cerr << "The hash table is already full.";
+}
+
+
+unsigned int QuadraticProbing::getColisions() const {
+	return colisions;
 }
 
 /* =================================

@@ -36,9 +36,14 @@ void LinearProbing::insert(int value) {
 			hashTable[key] = value;
 		}
 	}
+	colisions = i;
 	if (!finish) cerr << "The hash table is already full.";
 }
 
+
+unsigned int LinearProbing::getColisions() const {
+	return colisions;
+}
 /* =================================
  *               PRIVATE
  *  =================================*/

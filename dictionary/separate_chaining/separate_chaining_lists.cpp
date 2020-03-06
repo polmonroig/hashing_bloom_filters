@@ -1,7 +1,7 @@
 #include "separate_chaining_lists.h"
 
 
-/** =================================
+/* =================================
  *               PUBLIC
  *  =================================*/
 
@@ -33,7 +33,11 @@ bool SeparateChainingLists::find(int value) {
 	return false;
 }
 
-/** =================================
+unsigned int SeparateChainingLists::getColisions() const {
+	return colisions;
+}
+
+/* =================================
  *               PRIVATE
  *  =================================*/
 

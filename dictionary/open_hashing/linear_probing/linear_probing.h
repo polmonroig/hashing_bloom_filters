@@ -16,6 +16,9 @@ public:
 
 	virtual bool find(int value) final;
 
+    virtual unsigned int getColisions() const;
+
+
 private:
 
 	unsigned int getPosition(int value, unsigned int i) const;
