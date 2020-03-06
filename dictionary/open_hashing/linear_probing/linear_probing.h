@@ -18,11 +18,10 @@ public:
 
 private:
 
-	unsigned int getPosition(int value) const;
+	unsigned int getPosition(int value, unsigned int i) const;
 	std::vector<int> hashTable;
 
 	HashFunction *h;
-	unsigned int i;
 
 };
 

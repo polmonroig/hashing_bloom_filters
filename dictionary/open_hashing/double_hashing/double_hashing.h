@@ -16,13 +16,12 @@ class DoubleHashing : public Dictionary {
 
 		virtual bool find(int value) final;
 
-		unsigned int getPosition(int value) const;
-		std::vector<int> hashTable;
 	private:
 
+		unsigned int getPosition(int value, unsigned int i) const;
+		std::vector<int> hashTable;
 
 		HashFunction *h1, *h2;
-		unsigned int i;
 
 };
 
