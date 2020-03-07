@@ -44,9 +44,11 @@ public:
 
     std::string getBuildTime() const;
 
-    std::string getSuccesMeanTime()const;
+    std::string getSuccessMeanTime()const;
 
     std::string getFailMeanTime()const;
+
+    std::string getFalsePositives() const;
 
 private:
 
@@ -75,6 +77,8 @@ private:
     BigDouble failLookupTimeMean;
 
     BigDouble  buildTime;
+
+    int falsePositives;
 
     unsigned int collisions;
 

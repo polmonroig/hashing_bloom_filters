@@ -15,15 +15,34 @@
 #include "data/csv_file.h"
 
 
-int main(){
+void usage(){
+    std::cerr << "Usage: ./experimenter n tableSize nHashFunctions seed keyPercentage inputDir outputDir" << std::endl << std::endl;
+    std::cerr << "    n: the number of keys to insert to the dictionary " << std::endl;
+    std::cerr << "    tableSize: the size of the hash table or the number of bits for the bloom filters" << std::endl;
+    std::cerr << "    nHashFunctions: the number of hash functions used by the bloom filters" << std::endl;
+    std::cerr << "    seed: the random seed for the data generation" << std::endl;
+    std::cerr << "    keyPercentage: the percentage of keys that appear in the data text files" << std::endl;
+    std::cerr << "    inputDir: the directory where the generated data must be placed, the directory must exist" << std::endl;
+    std::cerr << "    outputDir: the directory where the experiment must be placed, the directory must exist" << std::endl << std::endl;
+}
+
+int main(int argc, char* argv[]){
+
+    if(argc < 8){
+        usage();
+        return 1;
+    }
 
     // PARAMETER DEFINITION
-    int tableSize = 10000;
-    int n = 5000;
-    int nHashFunctions = 5;
-    int seed = 452545;
-    float keyPercentage = 0.5;
-
+    int n = std::stoi(argv[1]);
+    int tableSize = std::stoi(argv[2]);
+    int nHashFunctions = std::stoi(argv[3]);
+    int seed = std::stoi(argv[4]);
+    float keyPercentage = std::stof(argv[5]);
+    std::string inputPath = argv[6];
+    if(inputPath[inputPath.size() - 1] != '/')inputPath += '/';
+    std::string outputPath = argv[7];
+    if(inputPath[outputPath.size() - 1] != '/')outputPath += '/';
 
     // RANDOM DATA GENERATION
 
@@ -31,8 +50,8 @@ int main(){
     data.setSeed(seed);
     data.setSize(n);
     // creates the files if they do not exist already
-    std::string path = "data/data/";
-    data.generateIntegerData(path, keyPercentage);
+
+    data.generateIntegerData(inputPath, keyPercentage);
 
     // DICTIONARIES DEFINITION
     auto h1 = DivisionHash();
@@ -50,21 +69,21 @@ int main(){
     std::vector<std::string> names{"DH", "LP", "QP", "CK", "SPL", "SPV", "BF"};
 
     // DEFINE EXPERIMENT FILE
-    std::string experimentsDir = "data/experiments/";
-    CsvFile experimentFile(experimentsDir);
+
+    CsvFile experimentFile(outputPath);
 
     // DEFINE COL NAMES
     CsvRow colNames{"dictionaryType", "n", "tableSize", "nHashFunctions",
                     "seed", "keyPercentage", "nCollisions",
-                    "buildTime", "successMeanTime", "failMeanTime"};
+                    "buildTime", "successMeanTime", "failMeanTime", "falsePositives"};
 
     experimentFile.addRow(colNames);
 
 
     // DEFINE AND RUN EXPERIMENT
     int i = 0;
-    auto keys = data.getIntegerKeys(path);
-    auto text = data.getIntegerText(path);
+    auto keys = data.getIntegerKeys(inputPath);
+    auto text = data.getIntegerText(inputPath);
     for(auto const& dictionary : dictionaries){
         std::cout << "=================================" << std::endl;
         std::cout << "Testing " << names[i] << std::endl;
@@ -73,7 +92,8 @@ int main(){
         CsvRow row{names[i++],
                    std::to_string(n), std::to_string(tableSize), std::to_string(nHashFunctions),
                    std::to_string(seed), std::to_string(keyPercentage), experiment.getCollisions(),
-                   experiment.getBuildTime(), experiment.getSuccesMeanTime(), experiment.getFailMeanTime()};
+                   experiment.getBuildTime(), experiment.getSuccessMeanTime(), experiment.getFailMeanTime(),
+                   experiment.getFalsePositives()};
         experimentFile.addRow(row);
     }
 
