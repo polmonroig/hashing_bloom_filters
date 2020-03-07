@@ -12,6 +12,7 @@
 #include "dictionary/open_hashing/quadratic_probing/quadratic_probing.h"
 #include "hash/hash_functions/division_hash.h"
 #include "hash/hash_functions/multiplicative_hash.h"
+#include "hash/hash_functions/random_hash.h"
 #include "data/csv_file.h"
 
 
@@ -56,6 +57,7 @@ int main(int argc, char* argv[]){
     // DICTIONARIES DEFINITION
     auto h1 = DivisionHash();
     auto h2 = MultiplicativeHash();
+    auto h3 = RandomHash();
 
     DoubleHashing dh(tableSize, h1, h2);
     LinearProbing lp(tableSize, h2);

@@ -16,7 +16,8 @@ DICTIONARY_LINEAR_PROBING = dictionary/open_hashing/linear_probing/linear_probin
 DICTIONARY_QUADRATIC_PROBING = dictionary/open_hashing/quadratic_probing/quadratic_probing.cpp
 EXPERIMENT = experiment/experiment.cpp
 HASH_FUNCTIONS = hash/hash_functions/division_hash.cpp \
-				 hash/hash_functions/multiplicative_hash.cpp
+				 hash/hash_functions/multiplicative_hash.cpp \
+				 hash/hash_functions/random_hash.cpp
 RANDOM = random/rand_generator.cpp
 MAIN = experimenter.cpp
 
