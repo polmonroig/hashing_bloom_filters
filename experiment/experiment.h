@@ -44,6 +44,10 @@ public:
 
     std::string getBuildTime() const;
 
+    std::string getSuccesMeanTime()const;
+
+    std::string getFailMeanTime()const;
+
 private:
 
     /**

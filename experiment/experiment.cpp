@@ -89,3 +89,11 @@ double Experiment::getElapsedTime() const {
     return std::chrono::duration_cast<std::chrono::microseconds>(endPoint - startPoint).count();
 }
 
+std::string Experiment::getSuccesMeanTime() const {
+    return std::to_string(successLookupTimeMean);
+}
+
+std::string Experiment::getFailMeanTime() const{
+    return std::to_string(failLookupTimeMean);
+}
+

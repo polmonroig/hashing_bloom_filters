@@ -17,9 +17,9 @@ int main(){
 
     // PARAMETER DEFINITION
     int tableSize = 10000;
-    int n = 4000;
+    int n = 5000;
     int nHashFunctions = 5;
-    int seed = 165516;
+    int seed = 452545;
     float keyPercentage = 0.5;
 
 
@@ -44,33 +44,34 @@ int main(){
     dictionaries.push_back(&qp);
     BloomFilters bf(tableSize, nHashFunctions, h1, h2);
     dictionaries.push_back(&bf);
-
+    std::vector<std::string> names{"DH", "LP", "QP", "BF"};
 
     // DEFINE EXPERIMENT FILE
     std::string experimentsDir = "data/experiments/";
     CsvFile experimentFile(experimentsDir);
 
     // DEFINE COL NAMES
-    CsvRow colNames{"n", "tableSize", "nHashFunctions",
+    CsvRow colNames{"dictionaryType", "n", "tableSize", "nHashFunctions",
                     "seed", "keyPercentage", "nCollisions",
-                    "buildTime"};
+                    "buildTime", "successMeanTime", "failMeanTime"};
 
     experimentFile.addRow(colNames);
 
 
     // DEFINE AND RUN EXPERIMENT
+    int i = 0;
     auto keys = data.getIntegerKeys(path);
     auto text = data.getIntegerText(path);
     for(auto const& dictionary : dictionaries){
         std::cout << "=================================" << std::endl;
         Experiment experiment(*dictionary);
         experiment.test(keys, text);
-        CsvRow row{std::to_string(n), std::to_string(tableSize), std::to_string(nHashFunctions),
+        CsvRow row{names[i++],
+                   std::to_string(n), std::to_string(tableSize), std::to_string(nHashFunctions),
                    std::to_string(seed), std::to_string(keyPercentage), experiment.getCollisions(),
-                   experiment.getBuildTime()};
+                   experiment.getBuildTime(), experiment.getSuccesMeanTime(), experiment.getFailMeanTime()};
         experimentFile.addRow(row);
     }
-
 
 
     // SAVE DATA TO FILE
