@@ -39,11 +39,6 @@ public:
      * */
     void test(std::vector<int> const& keys, std::vector<int> const& text);
 
-    /**
-     * @brief This function writes the results of the test into a file
-     * @param fileName is the name of the file to write into
-     * */
-    void write(std::string const& fileName) const;
 
 private:
 

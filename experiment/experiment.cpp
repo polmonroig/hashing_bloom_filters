@@ -10,11 +10,10 @@ Experiment::Experiment(Dictionary  &dict) {
 }
 
 
-void Experiment::write(std::string const& fileName) const {
-
-}
 
 void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text) {
+    std::cout << "Number of keys: " << keys.size() << std::endl;
+    std::cout << "Number of texts: " << text.size() << std::endl;
     buildTable(keys);
     double buildTime = getElapsedTime();
     unsigned int colisions = dictionary->getColisions();
