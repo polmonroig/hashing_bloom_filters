@@ -13,12 +13,12 @@ int main() {
 
 
 	vector<int> keys{2,3,4,5,10,15};
-	vector<int> text{2,3,4,5,10,15,6,11,12,13};
+	vector<int> text{2,3,4,5,10,15,6,11,12,13,52,8};
 
 	auto h1 = DivisionHash();
 	auto h2 = MultiplicativeHash();
 
-	CockooHashing linear(10, h1, h2, 4);
+	CockooHashing linear(20, h1, h2, 4);
 
 	for (int i = 0; i < text.size(); ++i) {
 		if (linear.find(text[i])) cout <<"Key " << text[i] << " found." << endl;
@@ -28,7 +28,7 @@ int main() {
 			pair<unsigned int, unsigned int> p = linear.getPositions(text[i]);
 			cout << "Linear " << p.first << " " << p.second << endl;
 			linear.insert(text[i]);
-			for(int i = 0; i < 10; ++i) {
+			for(int i = 0; i < 20; ++i) {
 				cout << linear.hashTable[i] << ' ';
 			}
 			cout << endl;

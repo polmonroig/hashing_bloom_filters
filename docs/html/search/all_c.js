@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['test',['test',['../classExperiment.html#a219c2eaa35160ad334bc49cb5d13e22e',1,'Experiment']]]
+  ['quadraticprobing',['QuadraticProbing',['../classQuadraticProbing.html',1,'QuadraticProbing'],['../classQuadraticProbing.html#a205b1984761a26cf3d5b314cc041acb4',1,'QuadraticProbing::QuadraticProbing()']]]
 ];

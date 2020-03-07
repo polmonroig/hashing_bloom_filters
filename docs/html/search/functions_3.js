@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['find',['find',['../classDictionary.html#a87134d64bfc8966ec0f976da1c9d11bb',1,'Dictionary::find()'],['../classBloomFilters.html#a76831ccca480f99188ad746946154f0e',1,'BloomFilters::find()']]]
+  ['experiment',['Experiment',['../classExperiment.html#aa7ec7498744fb7e46b28f36e7e963948',1,'Experiment']]]
 ];

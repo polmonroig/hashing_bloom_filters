@@ -33,7 +33,7 @@ int main(){
     // DICTIONARY DEFINITION
     auto h1 = DivisionHash();
     auto h2 = MultiplicativeHash();
-    DoubleHashing filters(tableSize, h1, h2);
+    CockooHashing filters(tableSize, h1, h1, 10);
 
     // DEFINE AND RUN EXPERIMENT
     Experiment experiment(filters);

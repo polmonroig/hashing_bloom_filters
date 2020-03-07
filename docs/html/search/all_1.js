@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['datamanager',['DataManager',['../classDataManager.html',1,'']]],
-  ['dictionary',['Dictionary',['../classDictionary.html',1,'']]],
-  ['divisionhash',['DivisionHash',['../classDivisionHash.html',1,'DivisionHash'],['../classDivisionHash.html#aa2a20335b71c9ba5f8589c502cf78038',1,'DivisionHash::DivisionHash()']]]
+  ['cockoohashing',['CockooHashing',['../classCockooHashing.html',1,'CockooHashing'],['../classCockooHashing.html#ab4c7a3f6392e7f64bca6e96351fee616',1,'CockooHashing::CockooHashing()']]],
+  ['colisions',['colisions',['../classDictionary.html#aecf5de3f3dc4808107b43936a42aeaff',1,'Dictionary']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['randgenerator',['RandGenerator',['../classRandGenerator.html',1,'']]]
+  ['linearprobing',['LinearProbing',['../classLinearProbing.html',1,'']]]
 ];
