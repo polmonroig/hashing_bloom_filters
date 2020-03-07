@@ -33,8 +33,8 @@ bool SeparateChainingLists::find(int value) {
 	return false;
 }
 
-unsigned int SeparateChainingLists::getColisions() const {
-	return colisions;
+unsigned int SeparateChainingLists::getCollisions() const {
+	return collisions;
 }
 
 /* =================================

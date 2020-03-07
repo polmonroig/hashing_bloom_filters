@@ -10,18 +10,25 @@ Experiment::Experiment(Dictionary  &dict) {
 }
 
 
-void Experiment::write(std::string const& fileName) const {
-
-}
 
 void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text) {
+    std::cout << "Number of keys: " << keys.size() << std::endl;
+    std::cout << "Number of texts: " << text.size() << std::endl;
     buildTable(keys);
-    double buildTime = getElapsedTime();
-    unsigned int colisions = dictionary->getColisions();
-    std::cout << "Colisions: " << colisions << std::endl;
+    buildTime = getElapsedTime();
+    collisions = dictionary->getCollisions();
+    std::cout << "Colisions: " << collisions << std::endl;
     searchElements(text);
     unsigned int falsePositives = successLookupTimes - keys.size() / 2;
     std::cout << "False positives: " << falsePositives << std:: endl;
+}
+
+std::string Experiment::getCollisions() const{
+    return std::to_string(collisions);
+}
+
+std::string Experiment::getBuildTime() const{
+    return std::to_string(buildTime);
 }
 
 
@@ -80,5 +87,13 @@ void Experiment::endTimer() {
 
 double Experiment::getElapsedTime() const {
     return std::chrono::duration_cast<std::chrono::microseconds>(endPoint - startPoint).count();
+}
+
+std::string Experiment::getSuccesMeanTime() const {
+    return std::to_string(successLookupTimeMean);
+}
+
+std::string Experiment::getFailMeanTime() const{
+    return std::to_string(failLookupTimeMean);
 }
 

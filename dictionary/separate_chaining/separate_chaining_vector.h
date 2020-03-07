@@ -40,7 +40,7 @@ public:
     /**
      * @brief Function that returns the number of colisions on the filter
      * */
-    virtual unsigned int getColisions() const;
+    virtual unsigned int getCollisions() const;
     
 
 private:

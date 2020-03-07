@@ -39,11 +39,14 @@ public:
      * */
     void test(std::vector<int> const& keys, std::vector<int> const& text);
 
-    /**
-     * @brief This function writes the results of the test into a file
-     * @param fileName is the name of the file to write into
-     * */
-    void write(std::string const& fileName) const;
+
+    std::string getCollisions() const;
+
+    std::string getBuildTime() const;
+
+    std::string getSuccesMeanTime()const;
+
+    std::string getFailMeanTime()const;
 
 private:
 
@@ -70,6 +73,10 @@ private:
     BigDouble successLookupTimeMean;
 
     BigDouble failLookupTimeMean;
+
+    BigDouble  buildTime;
+
+    unsigned int collisions;
 
     /**
      * @brief is the current dictionary

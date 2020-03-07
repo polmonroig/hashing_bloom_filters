@@ -26,7 +26,7 @@ public:
     [[nodiscard]] virtual bool find(int value) = 0;
 
 
-    virtual unsigned int getColisions() const = 0;
+    virtual unsigned int getCollisions() const = 0;
 
 
 protected:
@@ -38,9 +38,9 @@ protected:
 
 
     /**
-     * @brief colisions is the number of colisions of the table
+     * @brief collisions is the number of collisions of the table
     * */
-    unsigned int colisions;
+    unsigned int collisions;
 
 };
 

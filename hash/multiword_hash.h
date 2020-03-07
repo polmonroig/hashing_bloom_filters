@@ -47,7 +47,7 @@ private:
     /**
      * @brief the single hash function
      * */
-    HashFunction hash;
+    HashFunction* hash;
 
 };
 

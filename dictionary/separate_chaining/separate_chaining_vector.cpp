@@ -33,8 +33,8 @@ bool SeparateChainingVector::find(int value) {
 	return false;
 }
 
-unsigned int SeparateChainingVector::getColisions() const {
-	return colisions;
+unsigned int SeparateChainingVector::getCollisions() const {
+	return collisions;
 }
 
 /* =================================
