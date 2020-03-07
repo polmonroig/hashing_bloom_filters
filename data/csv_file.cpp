@@ -17,8 +17,11 @@ void CsvFile::write() const {
     unsigned int i = 0;
     std::string fileName = outputDir + "experiment_";
     std::ifstream fileOpener(fileName + std::to_string(i));
-    while(fileOpener.is_open())fileOpener = std::ifstream(fileName + std::to_string(++i));
-    fileOpener.close();
+    while(fileOpener.is_open()){
+        fileOpener.close();
+        fileOpener = std::ifstream(fileName + std::to_string(++i));
+    }
+
     std::ofstream file(fileName + std::to_string(i), std::ios::out);
     for(auto const& row : rows){
         std::string currentRow;
