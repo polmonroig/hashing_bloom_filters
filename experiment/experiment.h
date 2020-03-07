@@ -40,14 +40,31 @@ public:
     void test(std::vector<int> const& keys, std::vector<int> const& text);
 
 
+    /**
+     * @brief getter for the total number of collisions
+     * */
     std::string getCollisions() const;
 
+    /**
+     * @brief getter for the build time in microseconds
+     * */
     std::string getBuildTime() const;
 
+    /**
+     * @brief getter for the success lookup time in microseconds
+     * */
     std::string getSuccessMeanTime()const;
 
+    /**
+     * @brief getter for the failed lookup time in microseconds
+     * */
     std::string getFailMeanTime()const;
 
+    /**
+     * @brief getter the number of false positives, returns negative if
+     *        false negatives
+     * @pre there cannot be false positives and false negatives at the same time
+     * */
     std::string getFalsePositives() const;
 
 private:
@@ -72,14 +89,31 @@ private:
     * */
     unsigned int failLookupTimes;
 
+    /**
+     * @brief contains the mean time for successful lookups
+     * */
     BigDouble successLookupTimeMean;
 
+    /**
+     * @brief contains the mean time for unsuccessful lookups
+     * */
     BigDouble failLookupTimeMean;
 
+    /**
+     * @brief contains the time to build the dictionary (insert all the keys)
+     * */
     BigDouble  buildTime;
 
+    /**
+     * @brief contains the number of false positives that happened during lookups,
+     *        if it is negative then that means that false negatives where found
+     * */
     int falsePositives;
 
+
+    /**
+     * @brief contains the number of collisions that happened during insertion
+     * */
     unsigned int collisions;
 
     /**
@@ -87,8 +121,19 @@ private:
      * */
     Dictionary* dictionary;
 
+    /**
+     * @brief sets the initial starting time  to now
+     * */
     void startTimer();
+
+    /**
+     * @brief sets the end time to now
+     * */
     void endTimer();
+
+    /**
+     * @brief gets the difference between the initial time point and the end time point
+     * */
     double getElapsedTime() const;
 
     /**

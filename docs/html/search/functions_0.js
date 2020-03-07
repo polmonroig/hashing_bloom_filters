@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bloomfilters',['BloomFilters',['../classBloomFilters.html#a641f3ad3229f7efb7a17d8de25ce1cc6',1,'BloomFilters']]]
+  ['addrow',['addRow',['../classCsvFile.html#a6f4627baf5c51f8b1559b60bb5773b67',1,'CsvFile']]]
 ];

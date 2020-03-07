@@ -9,9 +9,10 @@
 
 
 /**
- * @class   Separate Chaining, in this method each bucket is independent, and has some sort of vector of entries with the same index. 
-            The time for hash table operations is the time to find the bucket (which is constant) plus the time for the vector operation.
-            In a good hash table, each bucket has zero or one entries, and sometimes two or three, but rarely more than that. 
+ * @class   SeparateChainingVector
+ *          in this method each bucket is independent, and has some sort of vector of entries with the same index.
+ *          The time for hash table operations is the time to find the bucket (which is constant) plus the time for the vector operation.
+ *          In a good hash table, each bucket has zero or one entries, and sometimes two or three, but rarely more than that.
  * */
 class SeparateChainingVector : public Dictionary {
 

@@ -41,7 +41,7 @@ public:
     virtual bool find(int value) final;
 
     /**
-     * @brief Function that returns the number of colisions on the filter
+     * @brief Function that returns the number of collisions on the filter
      * */
     virtual unsigned int getCollisions() const;
     
@@ -58,7 +58,7 @@ private:
     /**
      * @brief k is the number of filters
      * */
-    unsigned int k, m;
+    unsigned int k;
 
     /**
      * @brief the two basic hash functions

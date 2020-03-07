@@ -1,5 +1,5 @@
-#ifndef A_COCKOO_HASHING_H
-#define A_COCKOO_HASHING_H
+#ifndef A_CUCKOO_HASHING_H
+#define A_CUCKOO_HASHING_H
 
 #include <vector>
 
@@ -8,13 +8,13 @@
 #include "../../../hash/hash_functions/hash_function.h"
 
 /**
- * @class CockooHashing
- * @brief CockooHashing is a form of open addressing which uses
- * the cockoo analogy in order to resolve collisions in hash 
+ * @class CuckooHashing
+ * @brief CuckooHashing is a form of open addressing which uses
+ * the cuckoo analogy in order to resolve collisions in hash
  * tables with worst-case constant lookup time.
  * */
 
-class CockooHashing : public Dictionary {
+class CuckooHashing : public Dictionary {
 	
 	public:
 
@@ -25,7 +25,7 @@ class CockooHashing : public Dictionary {
      	 * @param hash2 second hash definition
      	 * @param max maximum number of cockoo iterations
 		 * */
-		CockooHashing(int tableSize, HashFunction &hash1, HashFunction &hash2, unsigned int max);
+		CuckooHashing(int tableSize, HashFunction &hash1, HashFunction &hash2, unsigned int max);
 
 		/**
 	     * @brief Function that inserts a value into the bloom filter
@@ -65,7 +65,7 @@ class CockooHashing : public Dictionary {
 		 * @param pos is the position in which to insert the key
 		 * @param i value that iterates until the maximum one
 		 */ 
-		void cockoo(int value, unsigned int pos, unsigned int i);
+		void cuckoo(int value, unsigned int pos, unsigned int i);
 
 		/**
 	     * @brief two basic hash functions
@@ -73,7 +73,7 @@ class CockooHashing : public Dictionary {
 		HashFunction *h1, *h2;
 
 		/**
-		 * @brief maximum value for the cockoo loop
+		 * @brief maximum value for the cuckoo loop
 		 * */
 		unsigned int maxLoop;
 };

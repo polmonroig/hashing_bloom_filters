@@ -1,4 +1,4 @@
-#include "cockoo_hashing.h"
+#include "cuckoo_hashing.h"
 #include <iostream>
 using namespace std;
 
@@ -6,7 +6,7 @@ using namespace std;
  *               PUBLIC
  *  =================================*/
 
- CockooHashing::CockooHashing(int tableSize, HashFunction &hash1, HashFunction &hash2, unsigned int max){
+ CuckooHashing::CuckooHashing(int tableSize, HashFunction &hash1, HashFunction &hash2, unsigned int max){
  	m = tableSize;
  	h1 = &hash1;
 	h2 = &hash2;
@@ -14,18 +14,18 @@ using namespace std;
  	maxLoop = max;
  }
 
- bool CockooHashing::find(int value) {
+ bool CuckooHashing::find(int value) {
  	pair<unsigned int, unsigned int> keys = getPositions(value);
  	if (hashTable[keys.first] == value or hashTable[keys.second] == value) return true;
  	return false;
  }
 
- void CockooHashing::insert(int value) {
+ void CuckooHashing::insert(int value) {
  	pair<unsigned int, unsigned int> keys = getPositions(value);
- 	cockoo(value, keys.first, 0);
+ 	cuckoo(value, keys.first, 0);
  }
 
- unsigned int CockooHashing::getCollisions() const {
+ unsigned int CuckooHashing::getCollisions() const {
  	return collisions;
  }
 
@@ -33,15 +33,15 @@ using namespace std;
  *               PRIVATE
  *  =================================*/
 
-void CockooHashing::cockoo(int value, unsigned int pos,unsigned int i) {
+void CuckooHashing::cuckoo(int value, unsigned int pos,unsigned int i) {
 	if (i < maxLoop) {
 		unsigned int k = hashTable[pos];
 		if(k != value) {
 			hashTable[pos] = value;
 			if (k != -1) {
 				pair<unsigned int, unsigned int> keys = getPositions(k);
-				if (keys.first == pos) cockoo(k, keys.second,++i); 
-				else cockoo(k, keys.first, ++i);
+				if (keys.first == pos) cuckoo(k, keys.second,++i);
+				else cuckoo(k, keys.first, ++i);
 			}
 		}
 	} 
@@ -49,7 +49,7 @@ void CockooHashing::cockoo(int value, unsigned int pos,unsigned int i) {
 	collisions = i;
 }
 
-pair<unsigned int, unsigned int> CockooHashing::getPositions(int value) const {
+pair<unsigned int, unsigned int> CuckooHashing::getPositions(int value) const {
 	unsigned int p1 = (*h1)(value,m);
 	unsigned int p2 = (*h2)(value,m);
 	return make_pair(p1,p2);

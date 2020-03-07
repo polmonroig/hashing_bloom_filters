@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "cockoo_hashing/cockoo_hashing.h"
+#include "open_hashing/cockoo_hashing/cuckoo_hashing.h"
 #include <vector>
 #include "../../hash/hash_functions/division_hash.h"
 #include "../../hash/hash_functions/multiplicative_hash.h"
@@ -9,7 +9,7 @@ using namespace std;
 
 int main() {
 
-//per compilar g++ -std=c++17 -o main main.cpp cockoo_hashing/cockoo_hashing.cpp ../../hash/hash_functions/division_hash.cpp ../../hash/hash_functions/multiplicative_hash.cpp ../../hash/hash_functions/hash_function.cpp
+//per compilar g++ -std=c++17 -o main main.cpp cuckoo_hashing/cuckoo_hashing.cpp ../../hash/hash_functions/division_hash.cpp ../../hash/hash_functions/multiplicative_hash.cpp ../../hash/hash_functions/hash_function.cpp
 
 
 	vector<int> keys{2,3,4,5,10,15};

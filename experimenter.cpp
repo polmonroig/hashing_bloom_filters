@@ -5,7 +5,7 @@
 #include "experiment/experiment.h"
 #include "dictionary/bloom_filters/bloom_filters.h"
 #include "dictionary/open_hashing/double_hashing/double_hashing.h"
-#include "dictionary/open_hashing/cockoo_hashing/cockoo_hashing.h"
+#include "dictionary/open_hashing/cuckoo_hashing/cuckoo_hashing.h"
 #include "dictionary/open_hashing/linear_probing/linear_probing.h"
 #include "dictionary/separate_chaining/separate_chaining_lists.h"
 #include "dictionary/separate_chaining/separate_chaining_vector.h"
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]){
     LinearProbing lp(tableSize, h2);
     QuadraticProbing qp(tableSize, h1);
     BloomFilters bf(tableSize, nHashFunctions, h1, h2);
-    CockooHashing ck(tableSize, h1, h2, 10);
+    CuckooHashing ck(tableSize, h1, h2, 10);
     SeparateChainingLists spl(tableSize, h2);
     SeparateChainingVector spv(tableSize, h2);
 

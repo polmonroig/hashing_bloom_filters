@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['datamanager',['DataManager',['../classDataManager.html',1,'']]],
-  ['dictionary',['Dictionary',['../classDictionary.html',1,'']]],
-  ['divisionhash',['DivisionHash',['../classDivisionHash.html',1,'DivisionHash'],['../classDivisionHash.html#aa2a20335b71c9ba5f8589c502cf78038',1,'DivisionHash::DivisionHash()']]],
-  ['doublehashing',['DoubleHashing',['../classDoubleHashing.html',1,'DoubleHashing'],['../classDoubleHashing.html#aadf5af8f9781e1cc28248eb29985d7e9',1,'DoubleHashing::DoubleHashing()']]]
+  ['collisions',['collisions',['../classDictionary.html#a4f4e2bac98dc234369280720a166d5df',1,'Dictionary']]],
+  ['csvfile',['CsvFile',['../classCsvFile.html',1,'CsvFile'],['../classCsvFile.html#a1603da0eec05ddf21213b4d793de1387',1,'CsvFile::CsvFile()']]]
 ];
