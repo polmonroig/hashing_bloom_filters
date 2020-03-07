@@ -42,7 +42,7 @@ void LinearProbing::insert(int value) {
 }
 
 
-unsigned int LinearProbing::getColisions() const {
+unsigned int LinearProbing::getCollisions() const {
 	return colisions;
 }
 

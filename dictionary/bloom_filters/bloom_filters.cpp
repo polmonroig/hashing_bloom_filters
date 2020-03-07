@@ -29,7 +29,7 @@ void BloomFilters::insert(int value) {
 }
 
 
-unsigned int BloomFilters::getColisions() const {
+unsigned int BloomFilters::getCollisions() const {
     return 0;
 }
 

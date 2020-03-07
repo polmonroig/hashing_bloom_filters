@@ -16,7 +16,7 @@ void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text
     std::cout << "Number of texts: " << text.size() << std::endl;
     buildTable(keys);
     double buildTime = getElapsedTime();
-    unsigned int colisions = dictionary->getColisions();
+    unsigned int colisions = dictionary->getCollisions();
     std::cout << "Colisions: " << colisions << std::endl;
     searchElements(text);
     unsigned int falsePositives = successLookupTimes - keys.size() / 2;

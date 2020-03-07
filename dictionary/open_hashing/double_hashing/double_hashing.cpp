@@ -43,7 +43,7 @@ void DoubleHashing::insert(int value) {
 }
 
 
-unsigned int DoubleHashing::getColisions() const {
+unsigned int DoubleHashing::getCollisions() const {
 	return colisions;
 }
 
