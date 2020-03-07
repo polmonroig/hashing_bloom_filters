@@ -48,16 +48,16 @@ private:
     /**
      * @brief the modulus of the formula
      * */
-    static const BigInt m = 10000000000;
+    static const BigInt m = 2147483647;
     /**
      * @brief the multiplier
      * */
-    static const BigInt a = 3141592621;
+    static const BigInt a = 1664525;
 
     /**
      * @brief the increment
      * */
-    static const BigInt c = 2718281829;
+    static const BigInt c = 1013904223;
 
 
 };
