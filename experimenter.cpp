@@ -21,7 +21,7 @@ void usage(){
     std::cerr << "    tableSize: the size of the hash table or the number of bits for the bloom filters" << std::endl;
     std::cerr << "    nHashFunctions: the number of hash functions used by the bloom filters" << std::endl;
     std::cerr << "    seed: the random seed for the data generation" << std::endl;
-    std::cerr << "    keyPercentage: the percentage of keys that appear in the data text files" << std::endl;
+    std::cerr << "    keyPercentage: the minimum percentage of keys that appear in the data text files" << std::endl;
     std::cerr << "    inputDir: the directory where the generated data must be placed, the directory must exist" << std::endl;
     std::cerr << "    outputDir: the directory where the experiment must be placed, the directory must exist" << std::endl << std::endl;
 }

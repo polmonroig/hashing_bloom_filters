@@ -84,6 +84,6 @@ std::string DataManager::getFileExtension() const{
 
 void DataManager::writeData(std::ofstream & file, std::vector<BigInt > const& data, int size)const{
     for(int i = 0; i < size; ++i)
-        file << std::to_string(data[i]) + "\n";
+        file << std::to_string(data[i] % 1000000000) + "\n";
 
 }
