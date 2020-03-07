@@ -7,6 +7,8 @@
 #include "dictionary/open_hashing/double_hashing/double_hashing.h"
 #include "dictionary/open_hashing/cockoo_hashing/cockoo_hashing.h"
 #include "dictionary/open_hashing/linear_probing/linear_probing.h"
+#include "dictionary/separate_chaining/separate_chaining_lists.h"
+#include "dictionary/separate_chaining/separate_chaining_vector.h"
 #include "dictionary/open_hashing/quadratic_probing/quadratic_probing.h"
 #include "hash/hash_functions/division_hash.h"
 #include "hash/hash_functions/multiplicative_hash.h"
@@ -35,19 +37,17 @@ int main(){
     // DICTIONARIES DEFINITION
     auto h1 = DivisionHash();
     auto h2 = MultiplicativeHash();
-<<<<<<< HEAD
-    CockooHashing filters(tableSize, h1, h1, 10);
-=======
-    std::list<Dictionary*> dictionaries;
+
     DoubleHashing dh(tableSize, h1, h2);
-    dictionaries.push_back(&dh);
-    LinearProbing lp(tableSize, h1);
-    dictionaries.push_back(&lp);
+    LinearProbing lp(tableSize, h2);
     QuadraticProbing qp(tableSize, h1);
-    dictionaries.push_back(&qp);
     BloomFilters bf(tableSize, nHashFunctions, h1, h2);
-    dictionaries.push_back(&bf);
-    std::vector<std::string> names{"DH", "LP", "QP", "BF"};
+    CockooHashing ck(tableSize, h1, h2, 10);
+    SeparateChainingLists spl(tableSize, h2);
+    SeparateChainingVector spv(tableSize, h2);
+
+    std::list<Dictionary*> dictionaries{&dh, &lp, &qp, &ck, &spl, &spv, &bf};
+    std::vector<std::string> names{"DH", "LP", "QP", "CK", "SPL", "SPV", "BF"};
 
     // DEFINE EXPERIMENT FILE
     std::string experimentsDir = "data/experiments/";
@@ -60,7 +60,6 @@ int main(){
 
     experimentFile.addRow(colNames);
 
->>>>>>> c10e7ba21e5cc5c54760c8122523a5f01619ac8d
 
     // DEFINE AND RUN EXPERIMENT
     int i = 0;
@@ -68,6 +67,7 @@ int main(){
     auto text = data.getIntegerText(path);
     for(auto const& dictionary : dictionaries){
         std::cout << "=================================" << std::endl;
+        std::cout << "Testing " << names[i] << std::endl;
         Experiment experiment(*dictionary);
         experiment.test(keys, text);
         CsvRow row{names[i++],

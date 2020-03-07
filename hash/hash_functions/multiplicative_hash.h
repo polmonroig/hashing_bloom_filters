@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "hash_function.h"
+#include "../../random/rand_generator.h"
 
 
 /**
@@ -37,17 +38,17 @@ private:
     /**
      * @brief the word size of the computer
      * */
-    const long wordSize = 4294967296;
+    const BigInt wordSize = 4294967296;
 
     /**
      * @brief constant relative prime to wordSize
      * */
-    const long A = 2654435761;
+    const BigInt A = 2654435761;
 
     /**
      * @brief the fraction of A div wordSize
      * */
-    const long fractionADivWord = A / wordSize;
+    const BigInt fractionADivWord = A / wordSize;
 
 };
 
