@@ -25,8 +25,8 @@ using namespace std;
  	cockoo(value, keys.first, 0);
  }
 
- unsigned int CockooHashing::getColisions() const {
- 	return colisions;
+ unsigned int CockooHashing::getCollisions() const {
+ 	return collisions;
  }
 
 /*  =================================
@@ -46,7 +46,7 @@ void CockooHashing::cockoo(int value, unsigned int pos,unsigned int i) {
 		}
 	} 
 	else cerr << "Key " << value << " not positioned, possible presence of a cycle." << endl;
-	colisions = i;
+	collisions = i;
 }
 
 pair<unsigned int, unsigned int> CockooHashing::getPositions(int value) const {

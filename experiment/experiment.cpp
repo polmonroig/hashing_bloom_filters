@@ -15,12 +15,20 @@ void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text
     std::cout << "Number of keys: " << keys.size() << std::endl;
     std::cout << "Number of texts: " << text.size() << std::endl;
     buildTable(keys);
-    double buildTime = getElapsedTime();
-    unsigned int colisions = dictionary->getCollisions();
-    std::cout << "Colisions: " << colisions << std::endl;
+    buildTime = getElapsedTime();
+    collisions = dictionary->getCollisions();
+    std::cout << "Colisions: " << collisions << std::endl;
     searchElements(text);
     unsigned int falsePositives = successLookupTimes - keys.size() / 2;
     std::cout << "False positives: " << falsePositives << std:: endl;
+}
+
+std::string Experiment::getCollisions() const{
+    return std::to_string(collisions);
+}
+
+std::string Experiment::getBuildTime() const{
+    return std::to_string(buildTime);
 }
 
 

@@ -37,13 +37,13 @@ void LinearProbing::insert(int value) {
 			hashTable[key] = value;
 		}
 	}
-	colisions = i;
+	collisions = i;
 	if (!finish) cerr << "The hash table is already full." << endl;
 }
 
 
 unsigned int LinearProbing::getCollisions() const {
-	return colisions;
+	return collisions;
 }
 
 /*  =================================

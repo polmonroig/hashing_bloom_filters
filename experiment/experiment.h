@@ -40,6 +40,10 @@ public:
     void test(std::vector<int> const& keys, std::vector<int> const& text);
 
 
+    std::string getCollisions() const;
+
+    std::string getBuildTime() const;
+
 private:
 
     /**
@@ -65,6 +69,10 @@ private:
     BigDouble successLookupTimeMean;
 
     BigDouble failLookupTimeMean;
+
+    BigDouble  buildTime;
+
+    unsigned int collisions;
 
     /**
      * @brief is the current dictionary

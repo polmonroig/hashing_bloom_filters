@@ -22,6 +22,7 @@ int main(){
     int seed = 165516;
     float keyPercentage = 0.5;
 
+
     // RANDOM DATA GENERATION
 
     DataManager data{};
@@ -49,6 +50,14 @@ int main(){
     std::string experimentsDir = "data/experiments/";
     CsvFile experimentFile(experimentsDir);
 
+    // DEFINE COL NAMES
+    CsvRow colNames{"n", "tableSize", "nHashFunctions",
+                    "seed", "keyPercentage", "nCollisions",
+                    "buildTime"};
+
+    experimentFile.addRow(colNames);
+
+
     // DEFINE AND RUN EXPERIMENT
     auto keys = data.getIntegerKeys(path);
     auto text = data.getIntegerText(path);
@@ -56,12 +65,14 @@ int main(){
         std::cout << "=================================" << std::endl;
         Experiment experiment(*dictionary);
         experiment.test(keys, text);
+        CsvRow row{std::to_string(n), std::to_string(tableSize), std::to_string(nHashFunctions),
+                   std::to_string(seed), std::to_string(keyPercentage), experiment.getCollisions(),
+                   experiment.getBuildTime()};
+        experimentFile.addRow(row);
     }
 
-    CsvRow row;
-    row.push_back("new value");
-    row.push_back("new vcalue 2");
-    experimentFile.addRow(row);
+
+
     // SAVE DATA TO FILE
     experimentFile.write();
 
