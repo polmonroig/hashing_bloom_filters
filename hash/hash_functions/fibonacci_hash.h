@@ -1,27 +1,26 @@
-#ifndef A_MULTIPLICATIVE_HASH_H
-#define A_MULTIPLICATIVE_HASH_H
+#ifndef A_FIBONACCI_HASH_H
+#define A_FIBONACCI_HASH_H
 
 #include <cmath>
 
 #include "hash_function.h"
-#include "../../random/rand_generator.h"
 
 
 /**
- * @class MultiplicativeHash
+ * @class FibonacciHash
  * @brief hash multiplicative function
  *         referencing
  *         D.E. Knuth
  *         The art of computer programming
  *         volume 3[516]
  * */
-class MultiplicativeHash : public HashFunction{
+class FibonacciHash : public HashFunction{
 
 public:
     /**
     * @brief basic constructor, define the name
     * */
-    MultiplicativeHash();
+    FibonacciHash();
 
     /**
      * @brief hash function operator
@@ -38,19 +37,19 @@ private:
     /**
      * @brief the word size of the computer
      * */
-    const BigInt wordSize = 4294967296;
+    const double wordSize = 4294967296;
 
     /**
      * @brief constant relative prime to wordSize
      * */
-    const BigInt A = 2654435761;
+    const double A = 2654435761;
 
     /**
-     * @brief the fraction of A div wordSize
+     * @brief the fraction of A div wordSize aprox. golden ratio = 0.61800399887
      * */
-    const BigInt fractionADivWord = A / wordSize;
+    const double fractionADivWord = double(A) / double(wordSize);
 
 };
 
 
-#endif //A_MULTIPLICATIVE_HASH_H
+#endif //A_FIBONACCI_HASH_H

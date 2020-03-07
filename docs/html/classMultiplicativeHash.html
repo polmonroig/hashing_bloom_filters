@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.15"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Hashing and Bloom filters key lookup comparison: MultiplicativeHash Class Reference</title>
+<title>Hashing and Bloom filters key lookup comparison: FibonacciHash Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,7 +65,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classMultiplicativeHash-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">MultiplicativeHash Class Reference</div>  </div>
+<div class="title">FibonacciHash Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -74,7 +74,7 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="multiplicative__hash_8h_source.html">multiplicative_hash.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for MultiplicativeHash:</div>
+Inheritance diagram for FibonacciHash:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classMultiplicativeHash.png" usemap="#MultiplicativeHash_map" alt=""/>
@@ -85,7 +85,7 @@ Inheritance diagram for MultiplicativeHash:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a32b117ec3039c6c271a2f402f9bd86f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMultiplicativeHash.html#a32b117ec3039c6c271a2f402f9bd86f4">MultiplicativeHash</a> ()</td></tr>
+<tr class="memitem:a32b117ec3039c6c271a2f402f9bd86f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMultiplicativeHash.html#a32b117ec3039c6c271a2f402f9bd86f4">FibonacciHash</a> ()</td></tr>
 <tr class="memdesc:a32b117ec3039c6c271a2f402f9bd86f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">basic constructor, define the name  <a href="#a32b117ec3039c6c271a2f402f9bd86f4">More...</a><br /></td></tr>
 <tr class="separator:a32b117ec3039c6c271a2f402f9bd86f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a089184f656fd1953f3ae505ab84e0089"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMultiplicativeHash.html#a089184f656fd1953f3ae505ab84e0089">operator()</a> (int key, unsigned int tableSize) const final</td></tr>
@@ -108,13 +108,13 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <div class="textblock"><p>hash multiplicative function referencing D.E. Knuth The art of computer programming volume 3[516] </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a32b117ec3039c6c271a2f402f9bd86f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32b117ec3039c6c271a2f402f9bd86f4">&#9670;&nbsp;</a></span>MultiplicativeHash()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a32b117ec3039c6c271a2f402f9bd86f4">&#9670;&nbsp;</a></span>FibonacciHash()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MultiplicativeHash::MultiplicativeHash </td>
+          <td class="memname">FibonacciHash::FibonacciHash </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -138,7 +138,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int MultiplicativeHash::operator() </td>
+          <td class="memname">unsigned int FibonacciHash::operator() </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>key</em>, </td>

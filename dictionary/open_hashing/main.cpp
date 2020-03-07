@@ -4,7 +4,7 @@ using namespace std;
 #include "open_hashing/cockoo_hashing/cuckoo_hashing.h"
 #include <vector>
 #include "../../hash/hash_functions/division_hash.h"
-#include "../../hash/hash_functions/multiplicative_hash.h"
+#include "hash_functions/fibonacci_hash.h"
 
 
 int main() {
