@@ -7,6 +7,7 @@
 #include <list>
 #include <cmath>
 #include <chrono>
+#include <limits>
 
 #include "../dictionary/dictionary.h"
 
@@ -43,29 +44,51 @@ public:
     /**
      * @brief getter for the total number of collisions
      * */
-    std::string getCollisions() const;
+    double getCollisions() const;
 
     /**
      * @brief getter for the build time in microseconds
      * */
-    std::string getBuildTime() const;
+    BigDouble getBuildTime() const;
 
     /**
      * @brief getter for the success lookup time in microseconds
      * */
-    std::string getSuccessMeanTime()const;
+    BigDouble getSuccessMeanTime()const;
 
     /**
      * @brief getter for the failed lookup time in microseconds
      * */
-    std::string getFailMeanTime()const;
+    BigDouble getFailMeanTime()const;
 
     /**
      * @brief getter the number of false positives, returns negative if
      *        false negatives
      * @pre there cannot be false positives and false negatives at the same time
      * */
-    std::string getFalsePositives() const;
+    int getFalsePositives() const;
+
+
+    /**
+     * @brief getter for the max successful lookup in microseconds
+     * */
+    double getSuccessMaxTime() const;
+
+
+    /**
+     * @brief getter for the max failed lookup in microseconds
+     * */
+    double getFailMaxTime() const;
+
+    /**
+     * @brief getter for the min successful lookup in microseconds
+     * */
+    double getSuccessMinTime() const;
+
+    /**
+     * @brief getter for the min successful lookup in microseconds
+     * */
+    double getFailMinTime() const;
 
 private:
 
@@ -100,6 +123,26 @@ private:
     BigDouble failLookupTimeMean;
 
     /**
+     * @brief contains the maxLookupTime for succesful lookup
+     * */
+     BigDouble successMaxLookupTime;
+
+    /**
+    * @brief contains the minLookupTime for succesful lookup
+    * */
+    BigDouble successMinLookupTime;
+
+    /**
+    * @brief contains the maxLookupTime for fail lookup
+    * */
+    BigDouble failMaxLookupTime;
+
+    /**
+    * @brief contains the min LookupTime for fail lookup
+    * */
+    BigDouble failMinLookupTime;
+
+    /**
      * @brief contains the time to build the dictionary (insert all the keys)
      * */
     BigDouble  buildTime;
@@ -114,7 +157,7 @@ private:
     /**
      * @brief contains the number of collisions that happened during insertion
      * */
-    unsigned int collisions;
+    double collisions;
 
     /**
      * @brief is the current dictionary

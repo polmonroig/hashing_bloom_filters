@@ -16,34 +16,49 @@ void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text
     std::cout << "Number of texts: " << text.size() << std::endl;
     buildTable(keys);
     buildTime = getElapsedTime();
-    collisions = dictionary->getCollisions();
-    std::cout << "Colisions: " << collisions << std::endl;
+    collisions = dictionary->getCollisions() / text.size();
+    std::cout << "Collisions: " << collisions << std::endl;
     searchElements(text);
-    falsePositives = successLookupTimes - keys.size() / 2;
+    falsePositives = successLookupTimes - (text.size() - keys.size() * 2);
     std::cout << "False positives: " << falsePositives << std:: endl;
 }
 
-std::string Experiment::getCollisions() const{
-    return std::to_string(collisions);
+double Experiment::getCollisions() const{
+    return collisions;
 }
 
-std::string Experiment::getBuildTime() const{
-    return std::to_string(buildTime);
+BigDouble Experiment::getBuildTime() const{
+    return buildTime;
 }
 
-
-
-std::string Experiment::getSuccessMeanTime() const {
-    return std::to_string(successLookupTimeMean);
+BigDouble Experiment::getSuccessMeanTime() const {
+    return successLookupTimeMean;
 }
 
-std::string Experiment::getFailMeanTime() const{
-    return std::to_string(failLookupTimeMean);
+BigDouble Experiment::getFailMeanTime() const{
+    return failLookupTimeMean;
 }
 
-std::string Experiment::getFalsePositives() const{
-    return std::to_string(falsePositives);
+int Experiment::getFalsePositives() const{
+    return falsePositives;
 }
+
+double Experiment::getSuccessMaxTime() const {
+    return successMaxLookupTime;
+}
+
+double Experiment::getFailMaxTime() const {
+    return failMaxLookupTime;
+}
+
+double Experiment::getSuccessMinTime() const {
+    return successMinLookupTime;
+}
+
+double Experiment::getFailMinTime() const {
+    return failMinLookupTime;
+}
+
 
 
 /* =================================
@@ -64,6 +79,10 @@ void Experiment::searchElements(const std::vector<int> &vector) {
     failLookupTimeMean = 0;
     successLookupTimes = 0;
     failLookupTimes = 0;
+    failMaxLookupTime = 0;
+    successMaxLookupTime = 0;
+    failMinLookupTime = std::numeric_limits<double>::max();
+    successMinLookupTime = std::numeric_limits<double >::max();
     for(auto const& value : vector) {
         startTimer();
         bool found = dictionary->find(value);
@@ -72,9 +91,13 @@ void Experiment::searchElements(const std::vector<int> &vector) {
         if (found) {
             successLookupTimes++;
             successLookupTimeMean += lookupTime;
+            if(lookupTime > successMaxLookupTime)successMaxLookupTime = lookupTime;
+            if(lookupTime < successMinLookupTime)successMinLookupTime = lookupTime;
         } else {
             failLookupTimes++;
             failLookupTimeMean += lookupTime;
+            if(lookupTime > failMaxLookupTime)failMaxLookupTime = lookupTime;
+            if(lookupTime < failMinLookupTime)failMinLookupTime = lookupTime;
         }
     }
 
@@ -102,4 +125,5 @@ void Experiment::endTimer() {
 double Experiment::getElapsedTime() const {
     return std::chrono::duration_cast<std::chrono::microseconds>(endPoint - startPoint).count();
 }
+
 

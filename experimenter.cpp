@@ -17,11 +17,12 @@
 
 
 void usage(){
-    std::cerr << "Usage: ./experimenter n tableSize nHashFunctions seed keyPercentage inputDir outputDir" << std::endl << std::endl;
+    std::cerr << "Usage: ./experimenter n load nHashFunctions seed nRounds keyPercentage inputDir outputDir" << std::endl << std::endl;
     std::cerr << "    n: the number of keys to insert to the dictionary " << std::endl;
-    std::cerr << "    tableSize: the size of the hash table or the number of bits for the bloom filters" << std::endl;
+    std::cerr << "    load: the load factor of the table, size of the table = n / loadFactor" << std::endl;
     std::cerr << "    nHashFunctions: the number of hash functions used by the bloom filters" << std::endl;
     std::cerr << "    seed: the random seed for the data generation" << std::endl;
+    std::cerr << "    nRounds: the number of repetitions per dictionary per experiment" << std::endl;
     std::cerr << "    keyPercentage: the minimum percentage of keys that appear in the data text files" << std::endl;
     std::cerr << "    inputDir: the directory where the generated data must be placed, the directory must exist" << std::endl;
     std::cerr << "    outputDir: the directory where the experiment must be placed, the directory must exist" << std::endl << std::endl;
@@ -36,13 +37,14 @@ int main(int argc, char* argv[]){
 
     // PARAMETER DEFINITION
     int n = std::stoi(argv[1]);
-    int tableSize = std::stoi(argv[2]);
+    int tableSize = float(n) / std::stof(argv[2]);
     int nHashFunctions = std::stoi(argv[3]);
     int seed = std::stoi(argv[4]);
-    float keyPercentage = std::stof(argv[5]);
-    std::string inputPath = argv[6];
+    int nRounds = std::stoi(argv[5]);
+    float keyPercentage = std::stof(argv[6]);
+    std::string inputPath = argv[7];
     if(inputPath[inputPath.size() - 1] != '/')inputPath += '/';
-    std::string outputPath = argv[7];
+    std::string outputPath = argv[8];
     if(inputPath[outputPath.size() - 1] != '/')outputPath += '/';
 
     // RANDOM DATA GENERATION
@@ -77,7 +79,8 @@ int main(int argc, char* argv[]){
     // DEFINE COL NAMES
     CsvRow colNames{"dictionaryType", "n", "tableSize", "nHashFunctions",
                     "seed", "keyPercentage", "nCollisions",
-                    "buildTime", "successMeanTime", "failMeanTime", "falsePositives"};
+                    "buildTime", "successMeanTime", "failMeanTime", "successMaxTime",
+                    "successMinTime", "failMaxTime", "failMinTime", "falsePositives"};
 
     experimentFile.addRow(colNames);
 
@@ -89,13 +92,17 @@ int main(int argc, char* argv[]){
     for(auto const& dictionary : dictionaries){
         std::cout << "=================================" << std::endl;
         std::cout << "Testing " << names[i] << std::endl;
+
         Experiment experiment(*dictionary);
         experiment.test(keys, text);
         CsvRow row{names[i++],
                    std::to_string(n), std::to_string(tableSize), std::to_string(nHashFunctions),
-                   std::to_string(seed), std::to_string(keyPercentage), experiment.getCollisions(),
-                   experiment.getBuildTime(), experiment.getSuccessMeanTime(), experiment.getFailMeanTime(),
-                   experiment.getFalsePositives()};
+                   std::to_string(seed), std::to_string(keyPercentage), std::to_string(experiment.getCollisions()),
+                   std::to_string(experiment.getBuildTime()), std::to_string(experiment.getSuccessMeanTime()),
+                   std::to_string(experiment.getFailMeanTime()), std::to_string(experiment.getSuccessMaxTime()),
+                   std::to_string(experiment.getSuccessMinTime()), std::to_string(experiment.getFailMaxTime()),
+                   std::to_string(experiment.getFailMinTime()),
+                   std::to_string(experiment.getFalsePositives())};
         experimentFile.addRow(row);
     }
 
