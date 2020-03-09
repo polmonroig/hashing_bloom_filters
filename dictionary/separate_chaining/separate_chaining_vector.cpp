@@ -10,11 +10,14 @@ SeparateChainingVector::SeparateChainingVector(int tableSize, HashFunction &hash
 	m = tableSize;
 	h = &hash;
 	dictionary = std::vector<std::vector<int> > (m);
+	collisions = 0;
 }
 
 void SeparateChainingVector::insert(int value) {
 
 	unsigned int i = hash(value);
+
+	if (dictionary[i].size() > 0) ++collisions;
 
 	dictionary[i].push_back(value);
 }

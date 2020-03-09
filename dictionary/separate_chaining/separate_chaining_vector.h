@@ -61,6 +61,11 @@ private:
      * */
     unsigned int hash(int key) const;
 
+    /**
+     * @brief collisions counter
+     * */
+    unsigned int collisions;
+
 };
 
 
