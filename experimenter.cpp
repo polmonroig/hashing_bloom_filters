@@ -22,7 +22,6 @@ void usage(){
     std::cerr << "    load: the load factor of the table, size of the table = n / loadFactor" << std::endl;
     std::cerr << "    nHashFunctions: the number of hash functions used by the bloom filters" << std::endl;
     std::cerr << "    seed: the random seed for the data generation" << std::endl;
-    std::cerr << "    nRounds: the number of repetitions per dictionary per experiment" << std::endl;
     std::cerr << "    keyPercentage: the minimum percentage of keys that appear in the data text files" << std::endl;
     std::cerr << "    inputDir: the directory where the generated data must be placed, the directory must exist" << std::endl;
     std::cerr << "    outputDir: the directory where the experiment must be placed, the directory must exist" << std::endl << std::endl;
@@ -78,7 +77,7 @@ int main(int argc, char* argv[]){
     CsvFile experimentFile(outputPath);
 
     // DEFINE COL NAMES
-    CsvRow colNames{"dictionaryType", "n", "tableSize", "nHashFunctions",
+    CsvRow colNames{"dictionaryType", "n", "loadFactor", "nHashFunctions",
                     "seed", "keyPercentage", "nCollisions",
                     "buildTime", "successMeanTime", "failMeanTime", "successMaxTime",
                     "successMinTime", "failMaxTime", "failMinTime", "falsePositives",
@@ -98,7 +97,7 @@ int main(int argc, char* argv[]){
         Experiment experiment(*dictionary);
         experiment.test(keys, text);
         CsvRow row{names[i++],
-                   std::to_string(n), std::to_string(tableSize), std::to_string(nHashFunctions),
+                   std::to_string(n), std::to_string(loadFactor), std::to_string(nHashFunctions),
                    std::to_string(seed), std::to_string(keyPercentage), std::to_string(experiment.getCollisions()),
                    std::to_string(experiment.getBuildTime()), std::to_string(experiment.getSuccessMeanTime()),
                    std::to_string(experiment.getFailMeanTime()), std::to_string(experiment.getSuccessMaxTime()),
