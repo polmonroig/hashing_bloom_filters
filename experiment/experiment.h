@@ -162,8 +162,10 @@ private:
     /**
      * @brief contains the number of collisions that happened during insertion
      * */
-    double collisions;
+    double successCollisions;
 
+
+    double failCollisions;
 
     /**
      * @brief is the current dictionary

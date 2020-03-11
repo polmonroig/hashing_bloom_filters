@@ -48,7 +48,14 @@ unsigned int DoubleHashing::getCollisions() const {
 }
 
 double DoubleHashing::getTheoricalValue(bool success, float loadFactor) const{
-		return 0;
+	  float inner = 1.0 / (1.0 - loadFactor);
+		if(success){
+				float div = 1.0 / loadFactor;
+				return div * (std::log(inner) / std::log(2.718281828));
+		}
+		else{
+				return inner;
+		}
 }
 
 

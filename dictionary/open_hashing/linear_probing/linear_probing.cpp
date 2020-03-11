@@ -47,7 +47,13 @@ unsigned int LinearProbing::getCollisions() const {
 }
 
 double LinearProbing::getTheoricalValue(bool success, float loadFactor) const{
-		return 0;
+	  float factor = (1.0 - loadFactor);
+		if(success){
+				return 0.5 * (1.0 + (1.0 / factor));
+		}
+		else{
+			return 0.5 * (1.0 + (1.0 / (factor * factor)));
+		}
 }
 
 

@@ -2,6 +2,7 @@
 #define A_DOUBLE_HASHING_H
 
 #include <vector>
+#include <cmath>
 
 #include "../../dictionary.h"
 #include "../../../hash/hash_functions/hash_function.h"

@@ -49,6 +49,8 @@ private:
      * @brief saves the csv rows
      * */
     std::list<CsvRow> rows;
+
+    const std::string CSV_EXTENSION = ".csv";
 };
 
 
