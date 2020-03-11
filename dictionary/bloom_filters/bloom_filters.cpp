@@ -32,6 +32,12 @@ void BloomFilters::insert(int value) {
 unsigned int BloomFilters::getCollisions() const {
     return 0;
 }
+#include<iostream>
+double BloomFilters::getTheoricalValue(bool success, float loadFactor) const{
+    auto value = 1 / std::exp(k *  loadFactor);
+    std::cout << k *  loadFactor << std::endl;
+    return std::pow(1.0 - value, 2);
+}
 
 /* =================================
  *               PRIVATE

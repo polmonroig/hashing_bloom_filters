@@ -47,6 +47,11 @@ unsigned int QuadraticProbing::getCollisions() const {
 	return collisions;
 }
 
+double QuadraticProbing::getTheoricalValue(bool success, float loadFactor) const{
+		return 0;
+}
+
+
 /*  =================================
  *               PRIVATE
  *  =================================*/

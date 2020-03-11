@@ -37,7 +37,8 @@ int main(int argc, char* argv[]){
 
     // PARAMETER DEFINITION
     int n = std::stoi(argv[1]);
-    int tableSize = float(n) / std::stof(argv[2]);
+    float loadFactor = std::stof(argv[2]);
+    int tableSize = float(n) / loadFactor;
     int nHashFunctions = std::stoi(argv[3]);
     int seed = std::stoi(argv[4]);
     int nRounds = std::stoi(argv[5]);
@@ -80,7 +81,8 @@ int main(int argc, char* argv[]){
     CsvRow colNames{"dictionaryType", "n", "tableSize", "nHashFunctions",
                     "seed", "keyPercentage", "nCollisions",
                     "buildTime", "successMeanTime", "failMeanTime", "successMaxTime",
-                    "successMinTime", "failMaxTime", "failMinTime", "falsePositives"};
+                    "successMinTime", "failMaxTime", "failMinTime", "falsePositives",
+                    "successTheoricalValue", "failTheoricalValue"};
 
     experimentFile.addRow(colNames);
 
@@ -102,7 +104,8 @@ int main(int argc, char* argv[]){
                    std::to_string(experiment.getFailMeanTime()), std::to_string(experiment.getSuccessMaxTime()),
                    std::to_string(experiment.getSuccessMinTime()), std::to_string(experiment.getFailMaxTime()),
                    std::to_string(experiment.getFailMinTime()),
-                   std::to_string(experiment.getFalsePositives())};
+                   std::to_string(experiment.getFalsePositives()), std::to_string(experiment.getSuccessTheoricalValue(loadFactor)),
+                   std::to_string(experiment.getFailTheoricalValue(loadFactor))};
         experimentFile.addRow(row);
     }
 

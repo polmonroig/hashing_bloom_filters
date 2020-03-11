@@ -60,6 +60,16 @@ double Experiment::getFailMinTime() const {
 }
 
 
+double Experiment::getSuccessTheoricalValue(float load_factor) const{
+  return dictionary->getTheoricalValue(true, load_factor);
+}
+
+
+double Experiment::getFailTheoricalValue(float load_factor) const{
+  return dictionary->getTheoricalValue(false, load_factor);
+}
+
+
 
 /* =================================
  *               PRIVATE
@@ -125,5 +135,3 @@ void Experiment::endTimer() {
 double Experiment::getElapsedTime() const {
     return std::chrono::duration_cast<std::chrono::microseconds>(endPoint - startPoint).count();
 }
-
-

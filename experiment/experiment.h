@@ -90,6 +90,11 @@ public:
      * */
     double getFailMinTime() const;
 
+
+    double getSuccessTheoricalValue(float loadFactor) const;
+
+    double getFailTheoricalValue(float loadFactor) const;
+
 private:
 
     /**
@@ -158,6 +163,7 @@ private:
      * @brief contains the number of collisions that happened during insertion
      * */
     double collisions;
+
 
     /**
      * @brief is the current dictionary

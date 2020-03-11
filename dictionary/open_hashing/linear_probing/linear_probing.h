@@ -9,14 +9,14 @@
 
 /**
  * @class LinearProbing
- * @brief LinearProbing is a form of open addressing which uses 
- * 		  a start index and a stepping value in order to resolve 
+ * @brief LinearProbing is a form of open addressing which uses
+ * 		  a start index and a stepping value in order to resolve
  * 		  collisions in hash tables.
  * */
 
 class LinearProbing : public Dictionary{
 
-public: 
+public:
 
 	/**
 	 * @brief Default class constructor with hyper-parameters
@@ -30,7 +30,7 @@ public:
 	 * @param value is the key to insert
 	 * */
 	virtual void insert(int value) final;
-	
+
 	/**
 	 * @brief Function that finds if an item is in the hash table
 	 * @param value to search
@@ -39,10 +39,12 @@ public:
 	virtual bool find(int value) final;
 
 	/**
-	 * @brief Function that returns the number of colisions on the hash table 
+	 * @brief Function that returns the number of colisions on the hash table
 	 * */
     virtual unsigned int getCollisions() const;
 
+
+		virtual double getTheoricalValue(bool success, float loadFactor) const final;
 
 private:
 

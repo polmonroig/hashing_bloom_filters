@@ -29,6 +29,11 @@ using namespace std;
  	return collisions;
  }
 
+
+ double CuckooHashing::getTheoricalValue(bool success, float loadFactor) const{
+     return 0;
+ }
+
 /*  =================================
  *               PRIVATE
  *  =================================*/
@@ -44,7 +49,7 @@ void CuckooHashing::cuckoo(int value, unsigned int pos,unsigned int i) {
 				else cuckoo(k, keys.first, ++i);
 			}
 		}
-	} 
+	}
 	else cerr << "Key " << value << " not positioned, possible presence of a cycle." << endl;
 	collisions = i;
 }

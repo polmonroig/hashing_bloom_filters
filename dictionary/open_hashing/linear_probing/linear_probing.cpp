@@ -46,6 +46,11 @@ unsigned int LinearProbing::getCollisions() const {
 	return collisions;
 }
 
+double LinearProbing::getTheoricalValue(bool success, float loadFactor) const{
+		return 0;
+}
+
+
 /*  =================================
  *               PRIVATE
  *  =================================*/
@@ -53,5 +58,3 @@ unsigned int LinearProbing::getCollisions() const {
 unsigned int LinearProbing::getPosition(int value, unsigned int i) const {
 	return (((*h)(value,m) + i) % m);
 }
-
-

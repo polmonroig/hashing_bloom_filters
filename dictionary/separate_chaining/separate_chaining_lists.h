@@ -43,7 +43,10 @@ public:
      * @brief Function that returns the number of colisions on the filter
      * */
     virtual unsigned int getCollisions() const;
-    
+
+
+    virtual double getTheoricalValue(bool success, float loadFactor) const final;
+
 
 private:
 

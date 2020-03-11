@@ -15,7 +15,7 @@
 
 class QuadraticProbing : public Dictionary {
 
-	public: 
+	public:
 
 		/**
 		 * @brief Default class constructor with hyper-parameters
@@ -38,9 +38,13 @@ class QuadraticProbing : public Dictionary {
 		virtual bool find(int value) final;
 
 		/**
-	 	 * @brief Function that returns the number of colisions on the hash table 
+	 	 * @brief Function that returns the number of colisions on the hash table
 	 	 * */
 	    virtual unsigned int getCollisions() const;
+
+
+
+			virtual double getTheoricalValue(bool success, float loadFactor) const final;
 
 
 	private:

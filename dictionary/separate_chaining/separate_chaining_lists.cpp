@@ -40,6 +40,11 @@ unsigned int SeparateChainingLists::getCollisions() const {
 	return collisions;
 }
 
+
+double SeparateChainingLists::getTheoricalValue(bool success, float loadFactor) const{
+		return 0;
+}
+
 /* =================================
  *               PRIVATE
  *  =================================*/

@@ -2,6 +2,7 @@
 #define A_BLOOM_FILTERS_H
 
 #include <vector>
+#include <cmath>
 
 #include "../dictionary.h"
 #include "../../hash/hash_functions/hash_function.h"
@@ -44,7 +45,10 @@ public:
      * @brief Function that returns the number of collisions on the filter
      * */
     virtual unsigned int getCollisions() const;
-    
+
+
+    virtual double getTheoricalValue(bool success, float loadFactor) const final;
+
 private:
 
     /**

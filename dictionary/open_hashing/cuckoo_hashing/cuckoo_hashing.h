@@ -15,7 +15,7 @@
  * */
 
 class CuckooHashing : public Dictionary {
-	
+
 	public:
 
 		/**
@@ -41,15 +41,18 @@ class CuckooHashing : public Dictionary {
 		virtual bool find(int value) final;
 
 		/**
-		 * @brief Function that returns the number of colisions on the hash table 
+		 * @brief Function that returns the number of colisions on the hash table
 		 * */
 		virtual unsigned int getCollisions() const;
 
+
+		virtual double getTheoricalValue(bool success, float loadFactor) const final;
+
 	private:
-		
+
 		/**
-		 * @brief returns a pair with the possible positions on the hash table 
-		 *        for a key given by the hash functions 
+		 * @brief returns a pair with the possible positions on the hash table
+		 *        for a key given by the hash functions
 		 * @param value is the key
 		 * */
 		std::pair<unsigned int, unsigned int> getPositions(int value) const;
@@ -64,7 +67,7 @@ class CuckooHashing : public Dictionary {
 		 * @param value is the key to insert or to change position
 		 * @param pos is the position in which to insert the key
 		 * @param i value that iterates until the maximum one
-		 */ 
+		 */
 		void cuckoo(int value, unsigned int pos, unsigned int i);
 
 		/**

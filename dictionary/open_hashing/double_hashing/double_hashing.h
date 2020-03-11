@@ -16,7 +16,7 @@
 
 class DoubleHashing : public Dictionary {
 
-	public: 
+	public:
 
 		/**
 		 * @brief Default class constructor with hyper-parameters
@@ -40,9 +40,12 @@ class DoubleHashing : public Dictionary {
 		virtual bool find(int value) final;
 
 		/**
-		 * @brief Function that returns the number of colisions on the hash table 
+		 * @brief Function that returns the number of colisions on the hash table
 		 * */
 	    virtual unsigned int getCollisions() const;
+
+
+			virtual double getTheoricalValue(bool success, float loadFactor) const final;
 
 
 	private:
@@ -53,7 +56,7 @@ class DoubleHashing : public Dictionary {
 		 * @param i is the stepping value
 		 * */
 		unsigned int getPosition(int value, unsigned int i) const;
-		
+
 		/**
 		 * @brief hash table that stores keys
 		 * */

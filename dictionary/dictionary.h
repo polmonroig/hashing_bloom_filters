@@ -29,6 +29,9 @@ public:
     virtual unsigned int getCollisions() const = 0;
 
 
+    virtual double getTheoricalValue(bool success, float loadFactor) const = 0; 
+
+
 protected:
 
     /**

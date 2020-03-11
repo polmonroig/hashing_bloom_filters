@@ -22,7 +22,7 @@ void CsvFile::write() const {
         fileOpener = std::ifstream(fileName + std::to_string(++i));
     }
 
-    std::ofstream file(fileName + std::to_string(i), std::ios::out);
+    std::ofstream file(fileName + std::to_string(i) + ".csv", std::ios::out);
     for(auto const& row : rows){
         std::string currentRow;
         for(auto const& value : row){

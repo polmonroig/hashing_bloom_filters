@@ -47,6 +47,11 @@ unsigned int DoubleHashing::getCollisions() const {
 	return collisions;
 }
 
+double DoubleHashing::getTheoricalValue(bool success, float loadFactor) const{
+		return 0;
+}
+
+
 /*  =================================
  *               PRIVATE
  *  =================================*/
