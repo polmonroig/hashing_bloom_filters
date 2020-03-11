@@ -41,10 +41,11 @@ public:
     void test(std::vector<int> const& keys, std::vector<int> const& text);
 
 
-    /**
-     * @brief getter for the total number of collisions
-     * */
-    double getCollisions() const;
+
+    double getSuccessProbes() const;
+
+
+    double getFailProbes() const;
 
     /**
      * @brief getter for the build time in microseconds
@@ -162,10 +163,10 @@ private:
     /**
      * @brief contains the number of collisions that happened during insertion
      * */
-    double successCollisions;
+    double successProbes;
 
 
-    double failCollisions;
+    double failProbes;
 
     /**
      * @brief is the current dictionary

@@ -17,7 +17,7 @@
 
 
 void usage(){
-    std::cerr << "Usage: ./experimenter n load nHashFunctions seed nRounds keyPercentage inputDir outputDir" << std::endl << std::endl;
+    std::cerr << "Usage: ./experimenter n load nHashFunctions seed keyPercentage inputDir outputDir" << std::endl << std::endl;
     std::cerr << "    n: the number of keys to insert to the dictionary " << std::endl;
     std::cerr << "    load: the load factor of the table, size of the table = n / loadFactor" << std::endl;
     std::cerr << "    nHashFunctions: the number of hash functions used by the bloom filters" << std::endl;
@@ -40,11 +40,10 @@ int main(int argc, char* argv[]){
     int tableSize = float(n) / loadFactor;
     int nHashFunctions = std::stoi(argv[3]);
     int seed = std::stoi(argv[4]);
-    int nRounds = std::stoi(argv[5]);
-    float keyPercentage = std::stof(argv[6]);
-    std::string inputPath = argv[7];
+    float keyPercentage = std::stof(argv[5]);
+    std::string inputPath = argv[6];
     if(inputPath[inputPath.size() - 1] != '/')inputPath += '/';
-    std::string outputPath = argv[8];
+    std::string outputPath = argv[7];
     if(inputPath[outputPath.size() - 1] != '/')outputPath += '/';
 
     // RANDOM DATA GENERATION
@@ -78,7 +77,7 @@ int main(int argc, char* argv[]){
 
     // DEFINE COL NAMES
     CsvRow colNames{"dictionaryType", "n", "loadFactor", "nHashFunctions",
-                    "seed", "keyPercentage", "nCollisions",
+                    "seed", "keyPercentage", "avgSuccessProbes", "avgFailProbes",
                     "buildTime", "successMeanTime", "failMeanTime", "successMaxTime",
                     "successMinTime", "failMaxTime", "failMinTime", "falsePositives",
                     "successTheoricalValue", "failTheoricalValue"};
@@ -98,7 +97,8 @@ int main(int argc, char* argv[]){
         experiment.test(keys, text);
         CsvRow row{names[i++],
                    std::to_string(n), std::to_string(loadFactor), std::to_string(nHashFunctions),
-                   std::to_string(seed), std::to_string(keyPercentage), std::to_string(experiment.getCollisions()),
+                   std::to_string(seed), std::to_string(keyPercentage), std::to_string(experiment.getSuccessProbes()),
+                   std::to_string(experiment.getFailProbes()),
                    std::to_string(experiment.getBuildTime()), std::to_string(experiment.getSuccessMeanTime()),
                    std::to_string(experiment.getFailMeanTime()), std::to_string(experiment.getSuccessMaxTime()),
                    std::to_string(experiment.getSuccessMinTime()), std::to_string(experiment.getFailMaxTime()),

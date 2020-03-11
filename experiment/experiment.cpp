@@ -16,15 +16,18 @@ void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text
     std::cout << "Number of texts: " << text.size() << std::endl;
     buildTable(keys);
     buildTime = getElapsedTime();
-    collisions = float(dictionary->getCollisions()) / float(text.size());
-    std::cout << "Collisions: " << collisions << std::endl;
     searchElements(text);
     falsePositives = successLookupTimes - (text.size() - keys.size() * 2);
     std::cout << "False positives: " << falsePositives << std:: endl;
 }
 
-double Experiment::getCollisions() const{
-    return collisions;
+double Experiment::getSuccessProbes() const{
+  return successProbes;
+}
+
+
+double Experiment::getFailProbes() const{
+  return failProbes;
 }
 
 BigDouble Experiment::getBuildTime() const{
@@ -90,6 +93,8 @@ void Experiment::searchElements(const std::vector<int> &vector) {
     successLookupTimes = 0;
     failLookupTimes = 0;
     failMaxLookupTime = 0;
+    successProbes = 0;
+    failProbes = 0;
     successMaxLookupTime = 0;
     failMinLookupTime = std::numeric_limits<double>::max();
     successMinLookupTime = std::numeric_limits<double >::max();
@@ -103,18 +108,26 @@ void Experiment::searchElements(const std::vector<int> &vector) {
             successLookupTimeMean += lookupTime;
             if(lookupTime > successMaxLookupTime)successMaxLookupTime = lookupTime;
             if(lookupTime < successMinLookupTime)successMinLookupTime = lookupTime;
+            successProbes += dictionary->getCollisions();
         } else {
             failLookupTimes++;
             failLookupTimeMean += lookupTime;
             if(lookupTime > failMaxLookupTime)failMaxLookupTime = lookupTime;
             if(lookupTime < failMinLookupTime)failMinLookupTime = lookupTime;
+            failProbes += dictionary->getCollisions();
         }
     }
 
-    if(successLookupTimes > 0)
-        successLookupTimeMean /= successLookupTimes;
-    if(failLookupTimes > 0)
-        failLookupTimeMean /= failLookupTimes;
+
+    if(successLookupTimes > 0){
+      successLookupTimeMean /= successLookupTimes;
+      successProbes /= successLookupTimes; 
+    }
+    if(failLookupTimes > 0){
+      failLookupTimeMean /= failLookupTimes;
+      failProbes /= failLookupTimes;
+    }
+
 
     std::cout << "Succesful lookups: " << successLookupTimes << std::endl;
     std::cout << "Succesful mean lookup time: " <<successLookupTimeMean << std::endl;
