@@ -2,8 +2,24 @@
 # This shell script generates a sequnce of experiments
 # with the same parameters but with different seeds
 
-N_ROUNDS=$1
-SEED=`date '+%s'`
-make # create executable
+N=$1
+LOAD=$2
+N_HASH_F=$3
+KEY_P=$4
+INPUT=$5
+OUTPUT=$6
+N_ROUNDS=$7
+
+
+# make # create executable
 echo "Number of rounds: $N_ROUNDS"
-echo "Current seed: $SEED"
+
+
+for (( i = 0; i < $N_ROUNDS ; i++));
+do
+    SEED=`date '+%s%N'`
+    SEED=$(($SEED %10000000))
+    echo "Current seed: $SEED"
+    ./program $N $LOAD $N_HASH_F $SEED $KEY_P $INPUT $OUTPUT 
+
+done
