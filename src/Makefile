@@ -28,7 +28,7 @@ TARGET = $(RANDOM) $(DATA) $(HASH_FUNCTIONS) $(DICTIONARY_BLOOM) $(CSV)\
 		 $(EXPERIMENT)
 
 # rule definition
-experimenter: $(TARGET) $(MAIN) $(TARGET:.cpp=.h)
+program: $(TARGET) $(MAIN) $(TARGET:.cpp=.h)
 	$(COMPILER) $(STD) $(TARGET) $(MAIN) $(OUTNAME)
 
 clean:

@@ -5,14 +5,25 @@ from os import listdir
 from os.path import join
 
 DATA_PATH = "data/experiments/load_factor_"
+PLOT_PATH = "plots"
 
 
 
 def create_plots(path):
     files = [join(path, file) for file in listdir(path)]
+    tables = []
     for file in files:
-        loaded_file = pd.read_csv(file)
-        print(loaded_file)
+        tables.append(pd.read_csv(file))
+
+    table = pd.DataFrame()
+
+    if len(tables) > 0: # remove later 
+        table = pd.concat(tables)
+        table = table.sort_values(by=['dictionaryType'])
+        chunks = len(files)
+        print(np.array_split(table, chunks))
+
+
 
 
 
