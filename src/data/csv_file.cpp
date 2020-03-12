@@ -23,6 +23,7 @@ void CsvFile::write() const {
     }
 
     std::ofstream file(fileName + std::to_string(i) + CSV_EXTENSION, std::ios::out);
+    std::cout << "Writing file " << fileName + std::to_string(i) + CSV_EXTENSION << std::endl;
     for(auto const& row : rows){
         std::string currentRow;
         int current = 0;

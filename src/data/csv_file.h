@@ -2,6 +2,7 @@
 #define A_CSV_FILE_H
 
 #include <list>
+#include <iostream>
 #include <fstream>
 #include <string>
 
@@ -51,7 +52,7 @@ private:
     std::list<CsvRow> rows;
 
     /**
-     * @brief srepresents the extension of the file 
+     * @brief srepresents the extension of the file
      * */
     const std::string CSV_EXTENSION = ".csv";
 };

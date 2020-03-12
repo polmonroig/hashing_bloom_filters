@@ -31,7 +31,7 @@ int main(int argc, char* argv[]){
     std::string inputPath = argv[6];
     if(inputPath[inputPath.size() - 1] != '/')inputPath += '/';
     std::string outputPath = argv[7];
-    if(inputPath[outputPath.size() - 1] != '/')outputPath += '/';
+    if(outputPath[outputPath.size() - 1] != '/')outputPath += '/';
 
     ExperimentManager manager;
     manager.setParameters(n, loadFactor, tableSize, nHashFunctions,
