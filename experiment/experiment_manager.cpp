@@ -50,11 +50,15 @@ void ExperimentManager::test(){
     for(auto const& dictionary : dictionaries){
         std::cout << "=================================" << std::endl;
         std::cout << "Testing " << names[i] << std::endl;
-
-        Experiment experiment(*dictionary);
-        experiment.test(keys, text);
-        auto row = generateRow(experiment, names[i++]);
-        experimentFile.addRow(row);
+        for(int round = 0; round < nRounds; ++round){
+            Experiment experiment(*dictionary);
+            experiment.test(keys, text);
+            auto row = generateRow(experiment, names[i]);
+            experimentFile.addRow(row);
+            auto keys = data.getIntegerKeys(inputPath);
+            auto text = data.getIntegerText(inputPath);
+        }
+        ++i;
     }
 
 
@@ -72,7 +76,14 @@ void ExperimentManager::test(){
 
 
 void ExperimentManager::generateData(){
-    data.setSeed(seed);
+    if(seed == -1){
+        int currentTime = std::chrono::duration_cast<std::chrono::seconds>(now).count();
+        data.setSeed(currentTime);
+    }
+    else{
+        data.setSeed(seed);
+    }
+
     data.setSize(n);
     // creates the files if they do not exist already
     data.generateIntegerData(inputPath, keyPercentage);
