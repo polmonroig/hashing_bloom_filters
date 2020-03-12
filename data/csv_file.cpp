@@ -25,8 +25,11 @@ void CsvFile::write() const {
     std::ofstream file(fileName + std::to_string(i) + CSV_EXTENSION, std::ios::out);
     for(auto const& row : rows){
         std::string currentRow;
+        int current = 0;
         for(auto const& value : row){
-            currentRow += value + ",";
+            currentRow += value;
+            if(current != row.size() - 1)currentRow += ",";
+            current++;
         }
         file << currentRow << "\n";
     }

@@ -11,7 +11,7 @@ OUTPUT=$6
 N_ROUNDS=$7
 
 
-# make # create executable
+make # create executable
 echo "Number of rounds: $N_ROUNDS"
 
 
@@ -20,6 +20,6 @@ do
     SEED=`date '+%s%N'`
     SEED=$(($SEED %10000000))
     echo "Current seed: $SEED"
-    ./program $N $LOAD $N_HASH_F $SEED $KEY_P $INPUT $OUTPUT 
+    ./program $N $LOAD $N_HASH_F $SEED $KEY_P $INPUT $OUTPUT
 
 done

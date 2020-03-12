@@ -25,13 +25,16 @@ void SeparateChainingVector::insert(int value) {
 bool SeparateChainingVector::find(int value) {
 
 	unsigned int i = hash(value);
-
-	for (std::vector<int>::iterator it = dictionary[i].begin(); it != dictionary[i].end(); ++it)
+	collisions = 1;
+	for (std::vector<int>::iterator it = dictionary[i].begin(); it != dictionary[i].end(); ++it){
 		if (*it == value) {
 			dictionary[i].erase(it);
 			dictionary[i].insert(dictionary[i].begin(), value);
 			return true;
 		}
+		collisions++;
+	}
+
 
 	return false;
 }

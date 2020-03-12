@@ -37,7 +37,7 @@ void LinearProbing::insert(int value) {
 			hashTable[key] = value;
 		}
 	}
-	collisions = i;
+	collisions = i + 1;
 	if (!finish) cerr << "The hash table is already full." << endl;
 }
 

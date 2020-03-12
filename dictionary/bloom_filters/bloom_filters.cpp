@@ -30,7 +30,7 @@ void BloomFilters::insert(int value) {
 
 
 unsigned int BloomFilters::getCollisions() const {
-    return 0;
+    return 1;
 }
 #include<iostream>
 double BloomFilters::getTheoricalValue(bool success, float loadFactor) const{
