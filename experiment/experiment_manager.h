@@ -22,7 +22,7 @@ class ExperimentManager{
 public:
 
     void setParameters(int n, float loadFactor, int tableSize, int nHashFunctions,
-                        int seed, int nRounds, float keyPercentage, std::string const& inputPath,
+                        int seed,float keyPercentage, std::string const& inputPath,
                         std::string const& outputPath);
 
 
@@ -41,7 +41,6 @@ private:
 
 
     int n;
-    int nRounds;
     float loadFactor;
     int tableSize;
     int nHashFunctions;

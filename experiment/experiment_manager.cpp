@@ -5,15 +5,13 @@
  *  =================================*/
 
 void ExperimentManager::setParameters(int n, float loadFactor, int tableSize, int nHashFunctions,
-                      int seed, int nRounds, float keyPercentage, std::string const& inputPath,
-                      std::string const& outputPath){
+                      int seed, float keyPercentage, std::string const& inputPath, std::string const& outputPath){
 
       this->n = n;
       this->loadFactor = loadFactor;
       this->tableSize = tableSize;
       this->nHashFunctions = nHashFunctions;
       this->seed = seed;
-      this->nRounds = nRounds;
       this->keyPercentage = keyPercentage;
       this->inputPath = inputPath;
       this->outputPath = outputPath;
@@ -50,15 +48,11 @@ void ExperimentManager::test(){
     for(auto const& dictionary : dictionaries){
         std::cout << "=================================" << std::endl;
         std::cout << "Testing " << names[i] << std::endl;
-        for(int round = 0; round < nRounds; ++round){
-            Experiment experiment(*dictionary);
-            experiment.test(keys, text);
-            auto row = generateRow(experiment, names[i]);
-            experimentFile.addRow(row);
-            auto keys = data.getIntegerKeys(inputPath);
-            auto text = data.getIntegerText(inputPath);
-        }
-        ++i;
+
+        Experiment experiment(*dictionary);
+        experiment.test(keys, text);
+        auto row = generateRow(experiment, names[i++]);
+        experimentFile.addRow(row);
     }
 
 
@@ -76,18 +70,14 @@ void ExperimentManager::test(){
 
 
 void ExperimentManager::generateData(){
-    if(seed == -1){
-        int currentTime = std::chrono::duration_cast<std::chrono::seconds>(now).count();
-        data.setSeed(currentTime);
-    }
-    else{
-        data.setSeed(seed);
-    }
-
+    data.setSeed(seed);
     data.setSize(n);
     // creates the files if they do not exist already
     data.generateIntegerData(inputPath, keyPercentage);
 }
+
+
+
 
 
 
