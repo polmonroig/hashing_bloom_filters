@@ -2,7 +2,8 @@
 OPT = -O3
 STD = -std=c++17
 COMPILER = g++ $(OPT)
-OUTNAME = -o program
+PROGRAM_NAME = program
+OUTNAME = -o $(PROGRAM_NAME)
 
 # directory definition
 DATA = data/data_manager.cpp
@@ -19,7 +20,7 @@ HASH_FUNCTIONS = hash/hash_functions/division_hash.cpp \
 				 hash/hash_functions/fibonacci_hash.cpp \
 				 hash/hash_functions/random_hash.cpp
 RANDOM = random/rand_generator.cpp
-MAIN = program.cpp
+MAIN = $(PROGRAM_NAME).cpp
 
 TARGET = $(RANDOM) $(DATA) $(HASH_FUNCTIONS) $(DICTIONARY_BLOOM) $(CSV)\
 		 $(DICTIONARY_CHAINING_LISTS) $(DICTIONARY_CHAINING_VECTOR) \
@@ -27,8 +28,8 @@ TARGET = $(RANDOM) $(DATA) $(HASH_FUNCTIONS) $(DICTIONARY_BLOOM) $(CSV)\
 		 $(EXPERIMENT)
 
 # rule definition
-experimenter: $(TARGET) $(MAIN)
+experimenter: $(TARGET) $(MAIN) $(TARGET:.cpp=.h)
 	$(COMPILER) $(STD) $(TARGET) $(MAIN) $(OUTNAME)
 
 clean:
-		rm experimenter
+		rm $(PROGRAM_NAME)
