@@ -42,11 +42,15 @@ public:
     virtual bool find(int value) final;
 
     /**
-     * @brief Function that returns the number of collisions on the filter
+     * @brief Function that gets how many probes where found in a given lookup
+     * @returns ithe number of probes
      * */
     virtual unsigned int getCollisions() const;
 
-
+    /**
+     * @brief Function that gets how many probes where found in a given lookup
+     * @returns ithe number of probes
+     * */
     virtual double getTheoricalValue(bool success, float loadFactor) const final;
 
 private:

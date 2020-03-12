@@ -50,6 +50,9 @@ private:
      * */
     std::list<CsvRow> rows;
 
+    /**
+     * @brief srepresents the extension of the file 
+     * */
     const std::string CSV_EXTENSION = ".csv";
 };
 

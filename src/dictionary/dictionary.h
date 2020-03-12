@@ -25,11 +25,19 @@ public:
      * */
     [[nodiscard]] virtual bool find(int value) = 0;
 
-
+    /**
+     * @brief Function that gets how many probes where found in a given lookup
+     * @returns ithe number of probes
+     * */
     virtual unsigned int getCollisions() const = 0;
 
-
-    virtual double getTheoricalValue(bool success, float loadFactor) const = 0; 
+    /**
+     * @brief Function that finds the theorical value of the avg probes of a hash table
+     * @param success is if it needs to return in case of success or fail
+     * @param loadFactor the loadFactor of the table 
+     * @return the avg probes
+     * */
+    virtual double getTheoricalValue(bool success, float loadFactor) const = 0;
 
 
 protected:
