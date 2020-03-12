@@ -2,7 +2,7 @@
 OPT = -O3
 STD = -std=c++17
 COMPILER = g++ $(OPT)
-OUTNAME = -o experimenter
+OUTNAME = -o program
 
 # directory definition
 DATA = data/data_manager.cpp
@@ -14,12 +14,12 @@ DICTIONARY_DOUBLE_HASHING = dictionary/open_hashing/double_hashing/double_hashin
 DICTIONARY_CUCKOO_HASHING = dictionary/open_hashing/cuckoo_hashing/cuckoo_hashing.cpp
 DICTIONARY_LINEAR_PROBING = dictionary/open_hashing/linear_probing/linear_probing.cpp
 DICTIONARY_QUADRATIC_PROBING = dictionary/open_hashing/quadratic_probing/quadratic_probing.cpp
-EXPERIMENT = experiment/experiment.cpp
+EXPERIMENT = experiment/experiment.cpp experiment/experiment_manager.cpp
 HASH_FUNCTIONS = hash/hash_functions/division_hash.cpp \
 				 hash/hash_functions/fibonacci_hash.cpp \
 				 hash/hash_functions/random_hash.cpp
 RANDOM = random/rand_generator.cpp
-MAIN = experimenter.cpp
+MAIN = program.cpp
 
 TARGET = $(RANDOM) $(DATA) $(HASH_FUNCTIONS) $(DICTIONARY_BLOOM) $(CSV)\
 		 $(DICTIONARY_CHAINING_LISTS) $(DICTIONARY_CHAINING_VECTOR) \

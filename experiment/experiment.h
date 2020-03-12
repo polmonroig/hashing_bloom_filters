@@ -41,10 +41,14 @@ public:
     void test(std::vector<int> const& keys, std::vector<int> const& text);
 
 
-
+    /**
+     * @brief getter for the succesful probes in lookup
+     * */
     double getSuccessProbes() const;
 
-
+    /**
+     * @brief getter for the fail probes in lookup
+     * */
     double getFailProbes() const;
 
     /**
@@ -91,9 +95,16 @@ public:
      * */
     double getFailMinTime() const;
 
-
+    /**
+     * @brief getter for the succesful theorical value,
+     *        avg probes for hash tables and false positives for bf
+     * */
     double getSuccessTheoricalValue(float loadFactor) const;
 
+    /**
+     * @brief getter for the fail theorical value,
+     *        avg probes for hash tables and false positives for bf
+     * */
     double getFailTheoricalValue(float loadFactor) const;
 
 private:
@@ -161,11 +172,13 @@ private:
 
 
     /**
-     * @brief contains the number of collisions that happened during insertion
+     * @brief contains the number of probes in a successful search
      * */
     double successProbes;
 
-
+    /**
+     * @brief contains the number of probes in an unsuccessful search
+     */
     double failProbes;
 
     /**

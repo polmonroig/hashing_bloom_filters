@@ -18,7 +18,6 @@ void Experiment::test(std::vector<int> const &keys, std::vector<int> const &text
     buildTime = getElapsedTime();
     searchElements(text);
     falsePositives = successLookupTimes - (text.size() - keys.size() * 2);
-    std::cout << "False positives: " << falsePositives << std:: endl;
 }
 
 double Experiment::getSuccessProbes() const{
@@ -121,7 +120,7 @@ void Experiment::searchElements(const std::vector<int> &vector) {
 
     if(successLookupTimes > 0){
       successLookupTimeMean /= successLookupTimes;
-      successProbes /= successLookupTimes; 
+      successProbes /= successLookupTimes;
     }
     if(failLookupTimes > 0){
       failLookupTimeMean /= failLookupTimes;

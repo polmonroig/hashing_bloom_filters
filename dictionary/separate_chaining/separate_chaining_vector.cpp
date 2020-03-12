@@ -41,7 +41,12 @@ unsigned int SeparateChainingVector::getCollisions() const {
 }
 
 double SeparateChainingVector::getTheoricalValue(bool success, float loadFactor) const{
-		return 0;
+		if(success){
+				return 1 + ((loadFactor * loadFactor) / 2);
+		}
+		else{
+				return 1 + (loadFactor / 2);
+		}
 }
 
 
