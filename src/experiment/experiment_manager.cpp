@@ -31,7 +31,7 @@ void ExperimentManager::test(){
     LinearProbing lp(tableSize, h2);
     QuadraticProbing qp(tableSize, h1);
     BloomFilters bf(tableSize, nHashFunctions, h1, h2);
-    CuckooHashing ck(tableSize, h1, h2, 50);
+    CuckooHashing ck(tableSize, h1, h2, 200);
     SeparateChainingLists spl(tableSize, h2);
     SeparateChainingVector spv(tableSize, h2);
 
