@@ -30,7 +30,8 @@
    	Separate Chaining Tables and Bloom Filters. 
 
     \section{Experiment pipeline and methodology}
-    	The experimentation process was a very tedious task since it required to take in account a lot of parameters, 
+    	The experimentation process was a very tedious task since it required to take in account a lot of parameters. An experiment is divided into two parts the table build, where every $n$ keys of a dictionary are added, and the table lookup where $2 * n + n * keyPercenatge$ keys are searched in each type of hash table and the bloom filters. In the lookup part $2 * n$ keys of the search are not in the table and should return an unsuccessful search, the rest of the keys should return a successful search. 
+    	to the table and the table lookup, where given a series of keys 
     	.....
     	\begin{center}
 	 \begin{tabular}{||c | c ||} 
@@ -50,6 +51,8 @@
 	 $keyPercentage$ & The percentage of keys that appear in the text files \\
 	 \hline
 	 $seed$ & The initial number for the random integer generation \\
+	 \hline
+	 $maxLoop$ & Max recursive probes for the Cuckoo hashing \\
 	 \hline
 	\end{tabular}
 	\end{center}
