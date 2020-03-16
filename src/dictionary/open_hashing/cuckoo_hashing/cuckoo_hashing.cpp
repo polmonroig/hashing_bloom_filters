@@ -42,13 +42,11 @@ void CuckooHashing::cuckoo(int value, unsigned int pos,unsigned int i) {
 
 	if (i < maxLoop) {
 		unsigned int k = hashTable[pos];
-        if(k != value) {
-			hashTable[pos] = value;
-			if (k != -1) {
-				pair<unsigned int, unsigned int> keys = getPositions(k);
-				if (keys.first == pos) cuckoo(k, keys.second,++i);
-				else cuckoo(k, keys.first, ++i);
-			}
+		hashTable[pos] = value;
+		if (k != -1) {
+			pair<unsigned int, unsigned int> keys = getPositions(k);
+			if (keys.first == pos) cuckoo(k, keys.second,++i);
+			else cuckoo(k, keys.first, ++i);
 		}
 	}
 	else cerr << "Key " << value << " not positioned, possible presence of a cycle." << endl;
