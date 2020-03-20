@@ -9,12 +9,11 @@ DATA_PATH = "data/experiments/load_factor_"
 PLOT_PATH = "data/experiments/plots"
 DICTIONARY_TYPE_COL = 'dictionaryType'
 LOAD_FACTOR_TYPE_COL = "loadFactor"
-COMPARATIVE_COLS = ['n',  'nHashFunctions', 'seed',
-                    'keyPercentage', 'avgSuccessProbes',
+COMPARATIVE_COLS = [ 'keyPercentage', 'avgSuccessProbes',
                     'avgFailProbes', 'buildTime', 'successMeanTime',
                     'failMeanTime', 'successMaxTime', 'successMinTime',
                     'failMaxTime', 'failMinTime', 'falsePositives',
-                    'successTheoricalValue', 'failTheoricalValue', 'dictionaryType']
+                    'successTheoricalValue', 'failTheoricalValue']
 
 N_HASH_TYPES = 7
 
@@ -57,13 +56,13 @@ def plot(x, y, x_label, y_label, path):
     plt.clf()
 
 def create_plots(table):
-    hash_table_name = table['dictionaryType'].iloc[0]
+    hash_table_name = table[DICTIONARY_TYPE_COL].iloc[0]
+    table = table.sort_values(by=[LOAD_FACTOR_TYPE_COL])
     print("Creating plot " + hash_table_name)
-    table = table.sort_values(by=["loadFactor"])
-    seed_col = table["buildTime"]
-    print(table[["buildTime", "loadFactor"]])
-    load_factor_col = table["loadFactor"]
-    plot(load_factor_col, seed_col, "Load Factor", "buildTime", "buildTime" + hash_table_name + ".png")
+    loadFactor = table[LOAD_FACTOR_TYPE_COL]
+    for colName in COMPARATIVE_COLS:
+        horizontal = table[colName]
+        plot(loadFactor, horizontal, "Load Factor", colName, colName + "_" + hash_table_name + ".png")
 
     #plt.boxplot(seed_col)
     #plt.savefig(join(PLOT_PATH, "seed_boxplot.png"))
@@ -78,7 +77,6 @@ def main():
 
     tables = order_and_split(tables)
     for hash_table in tables:
-        print(list(hash_table.columns.values))
         create_plots(hash_table)
 
 
