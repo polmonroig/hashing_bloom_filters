@@ -8,6 +8,14 @@ from os.path import join
 DATA_PATH = "data/experiments/load_factor_"
 PLOT_PATH = "data/experiments/plots"
 DICTIONARY_TYPE_COL = 'dictionaryType'
+LOAD_FACTOR_TYPE_COL = "loadFactor"
+COMPARATIVE_COLS = ['n',  'nHashFunctions', 'seed',
+                    'keyPercentage', 'avgSuccessProbes',
+                    'avgFailProbes', 'buildTime', 'successMeanTime',
+                    'failMeanTime', 'successMaxTime', 'successMinTime',
+                    'failMaxTime', 'failMinTime', 'falsePositives',
+                    'successTheoricalValue', 'failTheoricalValue', 'dictionaryType']
+
 N_HASH_TYPES = 7
 
 def order_and_split(tables):
@@ -41,18 +49,24 @@ def create_table(path):
 
     return table
 
-def plot(x, y, y_label, x_label, path):
+def plot(x, y, x_label, y_label, path):
     plt.plot(x, y)
     plt.ylabel(y_label)
     plt.xlabel(x_label)
     plt.savefig(join(PLOT_PATH, path))
+    plt.clf()
 
 def create_plots(table):
-    seed_col = table["seed"]
+    hash_table_name = table['dictionaryType'].iloc[0]
+    print("Creating plot " + hash_table_name)
+    table = table.sort_values(by=["loadFactor"])
+    seed_col = table["buildTime"]
+    print(table[["buildTime", "loadFactor"]])
     load_factor_col = table["loadFactor"]
-    #plot(seed_col, load_factor_col, "Load Factor", "Seed", "seed_plot.png")
-    plt.boxplot(seed_col)
-    plt.savefig(join(PLOT_PATH, "seed_boxplot.png"))
+    plot(load_factor_col, seed_col, "Load Factor", "buildTime", "buildTime" + hash_table_name + ".png")
+
+    #plt.boxplot(seed_col)
+    #plt.savefig(join(PLOT_PATH, "seed_boxplot.png"))
 
 
 def main():
@@ -64,6 +78,7 @@ def main():
 
     tables = order_and_split(tables)
     for hash_table in tables:
+        print(list(hash_table.columns.values))
         create_plots(hash_table)
 
 
