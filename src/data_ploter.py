@@ -12,9 +12,8 @@ LOAD_FACTOR_TYPE_COL = "loadFactor"
 COMPARATIVE_COLS = [ 'keyPercentage', 'avgSuccessProbes',
                     'avgFailProbes', 'buildTime', 'successMeanTime',
                     'failMeanTime', 'successMaxTime', 'successMinTime',
-                    'failMaxTime', 'failMinTime', 'falsePositives',
-                    'successTheoricalValue', 'failTheoricalValue']
-
+                    'failMaxTime', 'failMinTime', 'successTheoricalValue', 'failTheoricalValue']
+LOAD_FACTOR_ARRAY = [i / 100 for i in range(10, 100, 10)]
 N_HASH_TYPES = 7
 
 def order_and_split(tables):
@@ -48,24 +47,26 @@ def create_table(path):
 
     return table
 
-def plot(x, y, x_label, y_label, path):
-    plt.plot(x, y)
-    plt.ylabel(y_label)
-    plt.xlabel(x_label)
-    plt.savefig(join(PLOT_PATH, path))
-    plt.clf()
 
-def create_plots(table):
-    hash_table_name = table[DICTIONARY_TYPE_COL].iloc[0]
-    table = table.sort_values(by=[LOAD_FACTOR_TYPE_COL])
-    print("Creating plot " + hash_table_name)
-    loadFactor = table[LOAD_FACTOR_TYPE_COL]
-    for colName in COMPARATIVE_COLS:
-        horizontal = table[colName]
-        plot(loadFactor, horizontal, "Load Factor", colName, colName + "_" + hash_table_name + ".png")
+def create_plots(tables):
+    tables = [table.sort_values(by=LOAD_FACTOR_TYPE_COL) for table in tables] # sort by load factor
+    for col_name in COMPARATIVE_COLS:
+        data = []
+        legend = []
+        for table in tables:
+            legend.append(table[DICTIONARY_TYPE_COL].iloc[0])
+            data.append(table[col_name])
 
-    #plt.boxplot(seed_col)
-    #plt.savefig(join(PLOT_PATH, "seed_boxplot.png"))
+        plt.ylabel(col_name)
+        plt.xlabel("Load Factor")
+        for d in data:
+            plt.plot(LOAD_FACTOR_ARRAY, d)
+        path = join(PLOT_PATH, "loadFactor_vs_" + col_name)
+        plt.legend(legend, loc='upper left')
+        plt.savefig(path)
+        plt.clf()
+        print("Saving plot " + path + ".png")
+
 
 
 def main():
@@ -76,8 +77,7 @@ def main():
         tables.append(create_table(current_path))
 
     tables = order_and_split(tables)
-    for hash_table in tables:
-        create_plots(hash_table)
+    create_plots(tables)
 
 
 
