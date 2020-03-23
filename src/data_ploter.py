@@ -7,12 +7,22 @@ from os.path import join
 
 DATA_PATH = "data/experiments/load_factor_"
 PLOT_PATH = "data/experiments/plots"
+
+# col names
 DICTIONARY_TYPE_COL = 'dictionaryType'
+FALSE_POSITIVES_TYPE_COL = 'falsePositives'
 LOAD_FACTOR_TYPE_COL = "loadFactor"
-COMPARATIVE_COLS = [ 'keyPercentage', 'avgSuccessProbes',
-                    'avgFailProbes', 'buildTime', 'successMeanTime',
+KEY_PERCENTAGE_TYPE_COL = "keyPercentage"
+N_TYPE_COL = "n"
+
+
+THEORICAL_COLS = ['successTheoricalValue', 'failTheoricalValue']
+CALCULATED_COLS = ['avgSuccessProbes', 'avgFailProbes']
+COMPARATIVE_COLS = [ 'buildTime', 'successMeanTime',
                     'failMeanTime', 'successMaxTime', 'successMinTime',
-                    'failMaxTime', 'failMinTime', 'successTheoricalValue', 'failTheoricalValue']
+                    'failMaxTime', 'failMinTime']
+
+
 LOAD_FACTOR_ARRAY = [i / 100 for i in range(10, 100, 10)]
 N_HASH_TYPES = 7
 
@@ -48,8 +58,7 @@ def create_table(path):
     return table
 
 
-def create_plots(tables):
-    tables = [table.sort_values(by=LOAD_FACTOR_TYPE_COL) for table in tables] # sort by load factor
+def create_vs_plots(tables):
     for col_name in COMPARATIVE_COLS:
         data = []
         legend = []
@@ -66,6 +75,57 @@ def create_plots(tables):
         plt.savefig(path)
         plt.clf()
         print("Saving plot " + path + ".png")
+
+
+def create_fp_plot(tables):
+    # calculate false positive rate
+    bf_table = None
+    for table in tables:
+        if table[DICTIONARY_TYPE_COL].iloc[0] == "BF":
+            bf_table = table
+            break
+    false_pos_col = bf_table[FALSE_POSITIVES_TYPE_COL]
+    total_col = false_pos_col + 2 * bf_table[N_TYPE_COL]
+    false_positive_rate = false_pos_col / total_col
+    path = join(PLOT_PATH, "loadFactor_vs_falsePositives")
+    plt.ylabel("False positive rate")
+    plt.xlabel("Load Factor")
+    plt.plot(LOAD_FACTOR_ARRAY, false_positive_rate)
+    plt.plot(LOAD_FACTOR_ARRAY, bf_table['successTheoricalValue'])
+    plt.legend(["False positive rate", "Theorical rate"], loc='upper left')
+    plt.savefig(path)
+    plt.clf()
+    print("Saving plot " + path + ".png")
+
+def create_theorical_plot(table):
+    for i in range(len(THEORICAL_COLS)):
+        current_theorical = THEORICAL_COLS[i]
+        current_calculated = CALCULATED_COLS[i]
+        table_name = table[DICTIONARY_TYPE_COL].iloc[0]
+        path = join(PLOT_PATH,  "loadFactor_vs_" + current_calculated + "_" + table_name)
+        plt.ylabel(current_calculated)
+        plt.xlabel("Load Factor")
+        plt.plot(LOAD_FACTOR_ARRAY, table[current_calculated])
+        plt.plot(LOAD_FACTOR_ARRAY, table[current_theorical])
+        plt.legend([table_name + " Calculated", table_name + " Theorical"], loc='upper left')
+        plt.savefig(path)
+        plt.clf()
+        print("Saving plot " + path + ".png")
+
+
+def create_theorical_plots(tables):
+    create_fp_plot(tables)
+    for table in tables:
+        if table[DICTIONARY_TYPE_COL].iloc[0] != "BF":
+            create_theorical_plot(table)
+
+
+
+def create_plots(tables):
+    tables = [table.sort_values(by=LOAD_FACTOR_TYPE_COL) for table in tables] # sort by load factor
+    create_vs_plots(tables)
+    create_theorical_plots(tables)
+
 
 
 
