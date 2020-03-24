@@ -21,7 +21,9 @@ using namespace std;
  }
 
  void CuckooHashing::insert(int value) {
+    if(value == 1194989329)std::cout << "Seg fault value!" << std::endl;
  	pair<unsigned int, unsigned int> keys = getPositions(value);
+
  	cuckoo(value, keys.first, 0);
  }
 
@@ -40,16 +42,17 @@ using namespace std;
 
 void CuckooHashing::cuckoo(int value, unsigned int pos,unsigned int i) {
 
-	if (i < maxLoop) {
-		unsigned int k = hashTable[pos];
-		hashTable[pos] = value;
-		if (k != -1) {
-			pair<unsigned int, unsigned int> keys = getPositions(k);
-			if (keys.first == pos) cuckoo(k, keys.second,++i);
-			else cuckoo(k, keys.first, ++i);
-		}
-	}
-    else std::cerr << "Possible loop" << std::endl;
+    unsigned int k = hashTable[pos];
+    hashTable[pos] = value;
+    while(i < maxLoop && k != -1){ // while not empty pos && not loop found
+        pair<unsigned int, unsigned int> keys = getPositions(k);
+        if (keys.first == pos) pos = keys.second;
+        else pos = keys.first;
+        value = k;
+        ++i;
+        unsigned int k = hashTable[pos];
+        hashTable[pos] = value;
+    }
 	collisions = i;
 }
 
