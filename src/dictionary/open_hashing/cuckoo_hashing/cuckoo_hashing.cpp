@@ -49,7 +49,7 @@ void CuckooHashing::cuckoo(int value, unsigned int pos,unsigned int i) {
 			else cuckoo(k, keys.first, ++i);
 		}
 	}
-	else cerr << "Key " << value << " not positioned, possible presence of a cycle." << endl;
+    else std::cerr << "Possible loop" << std::endl;
 	collisions = i;
 }
 

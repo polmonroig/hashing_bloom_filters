@@ -54,6 +54,9 @@
 	 \hline
 	 $maxLoop$ & Max recursive probes for the Cuckoo hashing \\
 	 \hline
+	 $Q$ & the number of repetitions per experiments \\
+	 
+	 \hline 
 	\end{tabular}
 	\end{center}
 
@@ -61,23 +64,61 @@
 
     \section{Data Generation}
         The data used in each of the experiments consisted of a sequence of unsigned integers,  
-        the data was written in two different files, to distinguish them we used a specific 
-        format specified in figure X. One file contained the keys to insert into the dictionary and the other the text to find in the dictionary. 
-        The keys file contained n numbers and the text contained $2 * n + p * n$ where $p$ is the percentage of keys that are already inserted in the dictionary.
+        the data was written in two different files. One file contained the keys to insert into the dictionary and the other the text to find in the dictionary. 
+       
 		\subsection*{Linear Congruential Method}
-		The randomness of the keys was based on the Linear congruential method (LCM). 
+		The randomness of the keys was based on the Linear congruential method (LCM) \cite{BOOK:2}. 
 		We needed to have experiments as reliable as possible thus we needed a way to control the data generation, 
 		that is why we used this method. The LCM is one of the oldest and best-known random number generators, 
 		it is also very easy to implement. This method generates a cyclic sequence of numbers based on an initial seed. 
 		Given a seed $X_0$ it is possible to generate the next number in the sequence 
 		\begin{equation}
-		X_i = (X_{i-1} * a + c) \, mod m
+		X_i = (X_{i-1} * a + c) \, \bmod m
 		\end{equation}
 		 where $a$ is called the multiplier, $c$ the incrementer and $m$ the modulus. 
 		 The size of the sequence depends on the parameters used, independently on the initial seed.
-		  The best parameters are the ones that yield the maximum size sequence, that is parameters that yield $m$ numbers.  
-		  The parameters that we used where ...
+		  We used a combination of parameters that yield the maximum size sequence, that is parameters that yield $m$ numbers.  
+		  This ensured us that that there where never repeated numbers in either of the two files since the size of $m$ was
+		  sufficiently big. 
+		  
+		   
     \section{Experiment parameters}
+    \subsection*{Size of $n$}
+		   The keys file contained n numbers and the text contained $2 * n + p * n$ where $p$ is the percentage of keys that are already inserted in the dictionary. 
+		   We had a lot of discussion in which $n$ used and we tried different combinations but they yielded very similar results so we finally chosed an $n=10e^7$. 
+		   That happens to be 10 million keys that where inserted into the dictionary, although the table size was much bigger. We tried to used a bigger size of $n$
+		   but we encountered the size of the files we created where extraordinary big, we tried to divide the files but that wasn't of much use since we stilled needed to 
+		   save all the numbers in the hash tables. When we tried to to this the linux oom-killer killed to process because of the out of memory that was caused. Nevertheless 
+		   other researches \cite{ARTICLE:2} used similar sizes of $n$ so this size wasn't really an issue. 
+    \subsection*{Number of repetitions $Q$}
+    		   Each experiment was defined by a series of parameters to get the best results and avoid overfitting of the data to a single sample we 
+    		   repeated each experiment with $Q=100$ that is we performed the same experiment $100$ times and averaged the results. 
+   
+   \subsection*{Load factor $\alpha$}
+   		   The load factor is one of the variables that really helps into comparing each type of dictionary implementation, we used in total 
+   		   $9$ different load factors ranging from $0.10$ to $0.9$ with an offset of $0.10$. We could have subdivided the interval with a lower 
+   		   offset but after experimenting we found that there wasn't really a substantial difference. 
+   		   
+   \subsection*{Key percentage $p$}
+   		  The key percentage represents the percentage of keys that are in the keys (inserted in the dictionary) that are in the search file (the second file where the lookups are done). 
+   		  This variable did not have a big impact in the results since we average the lokuup time of each key individually and even if we chosed a really low key percentage we had a big enough 
+   		  $Q$ that it didn't matter. Thus we chosed $p=0.5$;
+   		  
+    \subsection*{Number of hash functions $k$}
+    		 This was a difficult parameter to choose since it had to be chosen optimally because if had a very big k then the number of false positives might diminish, but only if the size of the table
+    		 was big enough, on the other hand if we chosed a small value of $k$ the table would fill more slowly but it was more probable to find to keys with the same bits mask. To decide into what to choose 
+    		 we simply tested different values of $k$ with different results. 
+    		 
+    \subsection*{Hash functions}
+    		The hash functions we chosed where not the purpose of this experiment altough we tried to choose. 
+    		
+    \subsection*{Random seed}
+    		The seed number is really a determining factor into how the dictionaries will perform since different seeds yield to different keys and conscuently differnet hash outputs. 
+    		That is why for each experiment we chosed the same initial seed, altough the next seed was chosen at random based on the initial seed, this enabled reprodudability. In total 
+    		a number of $Q$ different seeds were selected, because the results of the $Q$ repetitions where average this enabled us to remove any outliers that could happend choosing a specific seed value. 
+    		
+    		
+    
 
     \section{Results}
 
