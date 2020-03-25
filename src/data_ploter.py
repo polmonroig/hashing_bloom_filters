@@ -5,8 +5,8 @@ from os import listdir
 from os.path import join
 
 
-DATA_PATH = "data/experiments/load_factor_"
-PLOT_PATH = "data/experiments/plots"
+DATA_PATH = "data/experiments/k_3/load_factor_"
+PLOT_PATH = "data/experiments/k_3/plots"
 
 # col names
 DICTIONARY_TYPE_COL = 'dictionaryType'
