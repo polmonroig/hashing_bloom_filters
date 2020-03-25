@@ -74,7 +74,20 @@ Open addressing is one of the two main methods of collision resolution in hash t
     \subsection{Separate Chaining}
     
     \subsection{Bloom filters}
-
+	Bloom filters \cite{ARTICLE:4} are a space efficient probabilistic data structure that can represent a dictionary. This data structures are space efficient because 
+	unlike hash tables they don't store the key itself but the a series of bits that determine if the value is in the dictionary or not. This bits are represented in an array 
+	or table. To insert a value into a bloom filter, it has to be hashed with $k$ different hash functions, each hash returns a specific position of the bits table that will be 
+	marked with a $1$. Thus, if a value is in the dictionary it means thet if we hash the key to be queried $k$ times every positition will be marked with a $1$ bit. Otherwise 
+	if a bit is marked with a $0$ it means that the value is not in the dictionary. This means that we if considered $k$ as a constant we can query and insert always in constant time. 
+	On the other hand this causes some problems because it is posible that two keys $k_1$, $k_2$ have hash to the same $k$ bits, and because we don't have a collision mechanism we would introduce 
+	a false positive rate when quering a specific value in the dictionary. This rate is directly dependent on the the number of hash functions that we use and the load factor of the table. 
+	To minimize \cite{ARTICLE:1} this false positive rate different methods have been found altough you can never make it dissapear. Another problem that we encountered when developing bloom filters 
+	was that we needed a way to generate $k$ different hash functions, although we found a very efficient and simple solution \cite{ARTICLE:3} based on creating a new hash function with two initial ones and 
+	an iterator. 
+	\begin{equation}
+	g(Key)_i = h_1(Key) + i * h_2(Key)
+	\end{equation}
+	
     \section{Data Generation}
         The data used in each of the experiments consisted of a sequence of unsigned integers,  
         the data was written in two different files. One file contained the keys to insert into the dictionary and the other the text to find in the dictionary. 
