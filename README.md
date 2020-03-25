@@ -5,17 +5,31 @@ to compare their key lookup time and general performance.
 
 ## Directory structure ##
 This project is structured into 7 main folders 
-    <li><b>data/</b> Contains the data generator and the keys and texts used of the experiments</li>
-    <li><b>dictionary/</b> Contains each of the data structures used for the tests</li>
-    <li><b>docs/</b> Contains the documentation of the code (html) and the experiment research</li>
-    <li><b>experiment/</b> Contains the definition of an experiment</li>
-    <li><b>hash/</b> Contains different hash functions implementations</li>
-    <li><b>random/</b> Contains the implementation of the random keys generator</li>
-    <li><b>resources/</b> Contains implementation resources of hash tables</li>
+    <li><b>src/</b> Contains all the code of the project including and the necessary files to compile it
+    		   and run it</li>
+    <li><b>docs/</b> Contains the documentation of the code, the documentation has a code 
+    		    documentation in html that was created using Doxygen, and the documentation of the 
+    		    experiment that contains the results and observations of the experiments with 
+    		    all the plots</li>
+
 
 
 ## Compilation & execution ##
-To compile the code you need to run <br>
-    ``` make experimenter```
+To compile the code you need to run  the Makefile with<br>
+    ``` make```
     
-To execute it just run the binary output, the compilation of the code used C++17 
+To execute it has to be run with the specified parameters in usage<br>
+	``` Usage: ./experimenter n load nHashFunctions seed keyPercentage inputDir outputDir
+
+	    n: the number of keys to insert to the dictionary 
+	    load: the load factor of the table, size of the table = n / loadFactor
+	    nHashFunctions: the number of hash functions used by the bloom filters
+	    seed: the random seed for the data generation
+	    keyPercentage: the minimum percentage of keys that appear in the data text files
+	    inputDir: the directory where the generated data must be placed, the directory must exist
+	    outputDir: the directory where the experiment must be placed, the directory must exist
+
+	```
+	
+
+

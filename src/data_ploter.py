@@ -6,7 +6,7 @@ from os.path import join
 
 
 DATA_PATH = "data/experiments/k_3/load_factor_"
-PLOT_PATH = "data/experiments/k_3/plots"
+PLOT_PATH = "data/experiments/k_3/plots/other"
 
 # col names
 DICTIONARY_TYPE_COL = 'dictionaryType'
@@ -63,8 +63,9 @@ def create_vs_plots(tables):
         data = []
         legend = []
         for table in tables:
-            legend.append(table[DICTIONARY_TYPE_COL].iloc[0])
-            data.append(table[col_name])
+            if table[DICTIONARY_TYPE_COL].iloc[0] == "QP":
+                legend.append(table[DICTIONARY_TYPE_COL].iloc[0])
+                data.append(table[col_name])
 
         plt.ylabel(col_name)
         plt.xlabel("Load Factor")
@@ -106,7 +107,7 @@ def create_theorical_plot(table):
         plt.ylabel(current_calculated)
         plt.xlabel("Load Factor")
         plt.plot(LOAD_FACTOR_ARRAY, table[current_calculated])
-        plt.plot(LOAD_FACTOR_ARRAY, table[current_theorical])
+        #plt.plot(LOAD_FACTOR_ARRAY, table[current_theorical])
         plt.legend([table_name + " Calculated", table_name + " Theorical"], loc='upper left')
         plt.savefig(path)
         plt.clf()
@@ -116,7 +117,7 @@ def create_theorical_plot(table):
 def create_theorical_plots(tables):
     create_fp_plot(tables)
     for table in tables:
-        if table[DICTIONARY_TYPE_COL].iloc[0] != "BF":
+        if table[DICTIONARY_TYPE_COL].iloc[0] == "QP" or table[DICTIONARY_TYPE_COL].iloc[0] == "CK":
             create_theorical_plot(table)
 
 
@@ -124,7 +125,7 @@ def create_theorical_plots(tables):
 def create_plots(tables):
     tables = [table.sort_values(by=LOAD_FACTOR_TYPE_COL) for table in tables] # sort by load factor
     create_vs_plots(tables)
-    create_theorical_plots(tables)
+    #create_theorical_plots(tables)
 
 
 
