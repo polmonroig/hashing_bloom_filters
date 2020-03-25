@@ -28,7 +28,7 @@ The main performance parameters that we are going to study, analyze and contrast
 All the algorithms have been implemented in c++ and the same data has been applied to the execution of different versions of the same experiment. 
 
     \section{Experiment pipeline and methodology}
-        The experimentation process was a very tedious task since it required to take in account a lot of parameters. TODO(Add pipeline image)
+        The experimentation process was a very tedious task since it required to take in account a lot of parameters. An experiment is defined by the series of parameters of section 4, thus they will no be explained here. To create the experiments we first defined a parameters and we repeated the experiment for each type of dictionary, finally we repeated the same experiment with different seeds and average the results to get a more precise result. When an experiment was done, we increased the load factor by 10\% and started the experiment again. The project was implemented mainly in C++, with exception of the plot creation that was made with Python. We used C++ because we wanted the best perfomace when performing each experiment, on the other hand we used Python because thanks to its simplicty we could create the plots faster, and they are independent to the experimentation. 
         
 \subsection{Open Addressing}
 Open addressing is one of the two main methods of collision resolution in hash tables. The four main techniques are:
