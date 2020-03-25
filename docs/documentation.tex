@@ -9,7 +9,7 @@
 \usepackage[backend=bibtex]{biblatex}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage{makecell}
+\usepackage{float}
 \usepackage[a4paper, total={5in, 8in}]{geometry}
 
 
@@ -160,7 +160,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
     \subsection*{Speed performance}
    To compare the behavior of each technique the main parameter computed is the run time.
     
-        \begin{figure}[!h]
+        \begin{figure}[H]
         \begin{center}
         \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_buildTime.png}
@@ -176,7 +176,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
     
     From the figures below, we can observe the behaviour performed in our experiments but we can't extract any significant conclusion regarding the algorithm's implementation. So, we speculate that they are due to the status of the computer.
     
-        \begin{figure}[!h]
+        \begin{figure}[H]
         \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_successMaxTime.png}
           \caption{Successful max time}\label{fig:plot2}
@@ -187,7 +187,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
         \endminipage
         \end{figure}
     
-    \begin{figure}[!h]
+    \begin{figure}[H]
         \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_failMaxTime.jpeg}
           \caption{Fail max time}\label{fig:plot2}
@@ -198,7 +198,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
         \endminipage
         \end{figure}
         
-        \begin{figure}[!h]
+        \begin{figure}[H]
         \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_failMeanTime.jpeg}
           \caption{Fail mean time}\label{fig:plot2}
@@ -215,7 +215,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
     
     \subsubsection*{Open Addressing : Linear Probing}
     
-        \begin{figure}[!h]
+        \begin{figure}[H]
             \minipage{0.5\textwidth}
               \includegraphics[width=\linewidth]{images/loadFactor_vs_avgSuccessProbes_LP.png}
               \caption{Successful probes}\label{fig:plot4}
@@ -231,7 +231,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
     
 \subsubsection*{Open Addressing : Quadratic Probing}
 
-        \begin{figure}[!h]
+        \begin{figure}[H]
     \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_avgSuccessProbes_QP.jpeg}
           \caption{Successful probes}\label{fig:plot6}
@@ -246,7 +246,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
     
     \subsubsection*{Open Addressing : Double Hashing}
 
-        \begin{figure}[!h]
+        \begin{figure}[H]
     \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_avgSuccessProbes_DH.png}
           \caption{Successful probes}\label{fig:plot8}
@@ -261,7 +261,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
     
     \subsubsection*{Open Addressing : Cuckoo Hashing}
 
-        \begin{figure}[!h]
+        \begin{figure}[H]
     \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_avgSuccessProbes_CK.jpeg}
           \caption{Successful probes}\label{fig:plot10}
@@ -276,7 +276,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
     
     \subsubsection*{Separate Chaining}
 
-        \begin{figure}[!h]
+        \begin{figure}[H]
     \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_avgSuccessProbes_SPL.png}
           \caption{Successful probes}\label{fig:plot12}
@@ -287,7 +287,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
         \endminipage
     \end{figure}
 
-        \begin{figure}[!h]
+        \begin{figure}[H]
     \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_avgSuccessProbes_SPV.png}
           \caption{Successful probes}\label{fig:plot14}
@@ -304,7 +304,7 @@ $1 + \frac{\alpha^2}{2}$ & $1 + \frac{\alpha}{2}$ \\
         This section is specifically centered on the false positive rate of the bloom filters since the other techniques do not have. \\\\
         Both plots have a similar figure but in this case, the experimental results show a much better performance with a lower false-positive rate. 
         
-        \begin{figure}[!h]
+        \begin{figure}[H]
         \begin{center}
         \minipage{0.5\textwidth}
           \includegraphics[width=\linewidth]{images/loadFactor_vs_falsePositives.png}
