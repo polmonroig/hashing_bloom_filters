@@ -32,9 +32,9 @@ To execute it has to be run with the specified parameters in usage<br>
 	```
 	
 ## Authors ##
-Pol Monroig Company
-Josep Maria Olivé
-Yaiza Cano 
+Pol Monroig Company<br>
+Josep Maria Olivé<br>
+Yaiza Cano <br>
 
 
 
