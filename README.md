@@ -19,6 +19,7 @@ To compile the code you need to run  the Makefile with<br>
     ``` make```
     
 To execute it has to be run with the specified parameters in usage<br>
+
 	``` Usage: ./experimenter n load nHashFunctions seed keyPercentage inputDir outputDir
 
 	    n: the number of keys to insert to the dictionary 
